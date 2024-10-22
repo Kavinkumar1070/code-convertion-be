@@ -5,9 +5,13 @@ import git
 import stat
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, UploadFile, File, Form
+from typing import List
+
 
 from clone_func import *
 from nlp_func import *
+from json_func import *
 # Initialize FastAPI
 app = FastAPI()
 
@@ -142,6 +146,27 @@ def process_all(request: FileProcessingRequest):
     process_files(input_folder, output_folder)
 
     return {"message": "Processing of routers, code, and files completed successfully."}
+
+#step4
+@app.post("/process_json/")
+async def process_json(roles: List[str] = Form(...)):
+    try:
+        # If roles are concatenated into a single string, split them
+        if len(roles) == 1 and ',' in roles[0]:
+            roles = roles[0].split(',')
+            
+        roles_directory = "roles"
+        current_working_directory = os.getcwd()
+        input_directory = os.path.join(current_working_directory, "output_f")
+        print(f"Input directory: {input_directory}")
+        print(f"Roles received: {roles}")  # Adjusted for clarity
+
+        # Process the JSON files with the user-provided roles
+        process_json_files(input_directory, roles_directory, roles)
+        return {"message": "JSON files processed successfully."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 if __name__ == "__main__":
     import uvicorn

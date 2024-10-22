@@ -1,0 +1,13 @@
+{
+    "read_employee": {
+        "project": "read_employee",
+        "project description": "Retrieve employee details",
+        "url": "/employee/employees/reademployee",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    }
+}

@@ -91,7 +91,7 @@ def convert_models_code_to_natural_language(code_content, filename=None):
 
     # Set up the Groq API key
     client = Groq(
-        api_key="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",
+        api_key="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",
     )
     
     # Make a request to the LLM
@@ -167,10 +167,10 @@ Expected format of output is like json:
 {{
     "function name": {{
         "project": "function name",
-        "URL": "url/endpoint",
-        "Method": "POST/GET/PUT/DELETE/etc.",
+        "url": "prefix/url",
+        "method": "POST/GET/PUT/DELETE/etc.",
         "Roles": ["role1", "role2", ...],
-        "Payload": {{
+        "payload": {{
             "field_name1": {{
                 "datatype": "string/integer/enum/etc.",
                 "required": true,
@@ -191,10 +191,10 @@ Expected format of output is like json:
     }},
     "get employee details": {{
         "project": "get employee details",
-        "URL": "employee/edrfghj",
-        "Method": "GET",
+        "url": "employee/edrfghj",
+        "method": "GET",
         "Roles": ["employee", "admin", ...],
-        "Payload": {{
+        "payload": {{
             "employee_id": {{
                 "datatype": "integer",
                 "required": true,
@@ -217,7 +217,7 @@ Please enclose the response with `~~~` before and after the output.
 
     # Set up the Groq API key
     client = Groq(
-        api_key="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",
+        api_key="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",
     )
 
     response = client.chat.completions.create(
@@ -236,6 +236,15 @@ Please enclose the response with `~~~` before and after the output.
 
         return result
 
+    
+def escape_backslashes(text):
+    # Escape all backslashes in regular expressions for JSON compatibility
+    return text.replace("\\", "\\\\")
+
+
+
+import json
+import re
 def final_formatting(text):
     # Construct a prompt to instruct the model
     prompt = f"""
@@ -245,7 +254,7 @@ Analyze the following API documentation text and extract the details for each en
 **description** - write a description based on method, function name, and field name.
 **Both are used for capturing the project or filling field values from user query, so write accordingly.**
 
-**add format** - based on validation, convert the natural language into regex format for all datatypes return output with slash handled,
+**add format** - based on validation, convert the natural language into regex format for all datatypes- use double slash // for regex,
                 except enum for enum return validation values;
                 if None in validation, return 'None' for format also, do not try to convert.
 
@@ -256,10 +265,10 @@ Expected format of output is like json:
     "function name": {{
         "project": "function name",
         "project description": "about project",
-        "URL": "url/endpoint",
-        "Method": "POST/GET/PUT/DELETE/etc.",
+        "url": "url/endpoint",
+        "method": "POST/GET/PUT/DELETE/etc.",
         "Roles": ["role1", "role2", ...],
-        "Payload": {{
+        "payload": {{
             "field_name1": {{
                 "description": "about field for function name",
                 "datatype": "string/integer/enum/etc.",
@@ -290,10 +299,10 @@ Expected format of output is like json:
     "get employee details": {{
         "project": "get employee details",
         "project description": "Retrieve the employee details by employee id",
-        "URL": "employee/edrfghj",
-        "Method": "GET",
+        "url": "employee/edrfghj",
+        "method": "GET",
         "Roles": ["employee", "admin", ...],
-        "Payload": {{
+        "payload": {{
             "employee_id": {{
                 "description": "employee ID to get employee details",
                 "datatype": "integer",
@@ -325,7 +334,7 @@ Please enclose the response with `~~~` before and after the output.
 
         # Extract the content from the response
         natural_language_explanation = response.choices[0].message.content.strip()
-        print(natural_language_explanation)
+
         # Locate the JSON section based on the '~~~' markers
         json_start_idx = natural_language_explanation.find("~~~") + 3
         json_end_idx = natural_language_explanation.rfind("~~~")
@@ -333,13 +342,8 @@ Please enclose the response with `~~~` before and after the output.
         # Check if markers are present
         if json_start_idx > -1 and json_end_idx > json_start_idx:
             result = natural_language_explanation[json_start_idx:json_end_idx].strip()
-            print(result)
-            # Sanitize backslashes by escaping them (use regex)
-            result = re.sub(r'(?<!\\)(\\)(?!["\\/bfnrt])', r'\\\\', result)
-
-            print('Sanitized JSON:')
-            #print(result)  # This will print the pretty-printed JSON string
-
+            result = escape_backslashes(result)
+            #print(result)
             try:
                 # Load the sanitized JSON
                 result = json.loads(result)
@@ -355,6 +359,7 @@ Please enclose the response with `~~~` before and after the output.
         result = "No valid response found."
 
     return result
+
 
 def process_files(input_folder, output_folder):
     # Create the output folder if it doesn't exist

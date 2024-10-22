@@ -1,0 +1,15 @@
+Here is the analysis of the code from `employee.py`:
+
+**Function 1: `read_employee`**
+
+* **Prefix**: `/employee`
+* **Function Name**: `read_employee`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/employees/reademployee`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+The `read_employee` function handles a GET request to retrieve employee details. It takes two dependencies: `db` (a database session) and `current_employee` (an authenticated employee object). The function first checks the employee's role and then retrieves the employee's details from the database. If the employee is not found, it raises an HTTPException with a 404 status code. Finally, it returns the employee's details in a dictionary.
+
+Note: There are no path parameters, class parameters, or payload structures associated with this function.

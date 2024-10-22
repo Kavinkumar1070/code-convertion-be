@@ -1,0 +1,97 @@
+{
+    "create_employee_route": {
+        "project": "create_employee_route",
+        "project description": "Create a new employee route",
+        "url": "/personal/employees",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "firstname": {
+                "description": "First name of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "lastname": {
+                "description": "Last name of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "address": {
+                "description": "Address of the employee for create employee route",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "dateofbirth": {
+                "description": "Date of birth of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "date format validation (YYYY-MM-DD)",
+                "format": "//^(\\\\d{4})-(\\\\d{2})-(\\\\d{2})$",
+                "assigned": "None"
+            },
+            "nationality": {
+                "description": "Nationality of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "gender": {
+                "description": "Gender of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "maritalstatus": {
+                "description": "Marital status of the employee for create employee route",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "emailaddress": {
+                "description": "Email address of the employee for create employee route",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "read_employee_route": {
+        "project": "read_employee_route",
+        "project description": "Read employee route",
+        "url": "/personal/employees",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "update_employee_data": {
+        "project": "update_employee_data",
+        "project description": "Update employee data",
+        "url": "/personal/employees",
+        "method": "PUT",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    }
+}

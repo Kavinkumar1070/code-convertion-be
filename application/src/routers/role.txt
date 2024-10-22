@@ -1,0 +1,89 @@
+Here is the analysis of the code from `role.py`:
+
+**1. Create Role**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `create_role`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/`
+	+ **HTTP Method**: `POST`
+	+ **Path Parameters**: None
+	+ **Class Parameters**: `RoleCreate`
+		- `name`: string, required, None
+
+**2. Delete Role**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `delete_role`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/{role_id}`
+	+ **HTTP Method**: `DELETE`
+	+ **Path Parameters**:
+		- `role_id`: integer, required, None
+	+ **Class Parameters**: None
+
+**3. Update Role**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `update_role`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/`
+	+ **HTTP Method**: `PUT`
+	+ **Path Parameters**: None
+	+ **Class Parameters**: `UpdateRole`
+		- `role_id`: integer, required, None
+		- (other fields not specified)
+
+**4. Get Roles**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `get_roles`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/`
+	+ **HTTP Method**: `GET`
+	+ **Path Parameters**: None
+	+ **Class Parameters**: None
+
+**5. Assign Role to Employee**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `assign_role_to_employee`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/employee/role`
+	+ **HTTP Method**: `POST`
+	+ **Path Parameters**: None
+	+ **Class Parameters**: `EmployeeRole`
+		- (fields not specified)
+
+**6. Create New Role Function**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `create_new_role_function`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/functions/`
+	+ **HTTP Method**: `POST`
+	+ **Path Parameters**: None
+	+ **Class Parameters**: `RoleFunctionCreate`
+		- (fields not specified)
+
+**7. Read Role Functions**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `read_role_functions`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/{role_id}/functions/`
+	+ **HTTP Method**: `GET`
+	+ **Path Parameters**:
+		- `role_id`: integer, required, None
+	+ **Class Parameters**: None
+
+**8. Delete Existing Role Function**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `delete_existing_role_function`
+	+ **Roles**: `admin`
+	+ **URL/Endpoint**: `/functions/{id}`
+	+ **HTTP Method**: `DELETE`
+	+ **Path Parameters**:
+		- `id`: integer, required, None
+	+ **Class Parameters**: None

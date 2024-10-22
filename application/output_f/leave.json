@@ -1,0 +1,180 @@
+{
+    "apply_leave": {
+        "project": "apply_leave",
+        "project description": "API to apply for a leave",
+        "url": "/leave/",
+        "method": "POST",
+        "Roles": [
+            "employee",
+            "admin",
+            "teamlead"
+        ],
+        "payload": {
+            "leave": {
+                "description": "Leave object to be created",
+                "datatype": "EmployeeLeaveCreate",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "leave_id": {
+                "description": "ID of the leave to be created",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "employee_id": {
+                "description": "ID of the employee applying for leave",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "leave_date": {
+                "description": "Date of the leave",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "reason": {
+                "description": "Reason for applying for leave",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "status": {
+                "description": "Status of the leave",
+                "datatype": "enum",
+                "required": true,
+                "validation": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "format": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "assigned": "None"
+            }
+        }
+    },
+    "get_leaves_by_employee": {
+        "project": "get_leaves_by_employee",
+        "project description": "API to get leaves by employee",
+        "url": "/leave/details",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_by": {
+        "project": "get_leave_by",
+        "project description": "API to get a leave by ID",
+        "url": "/leave/pending/leave",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_by_month": {
+        "project": "get_leave_by_month",
+        "project description": "API to get leaves by month",
+        "url": "/leave/{monthnumber}/{yearnumber}",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "update_leave": {
+        "project": "update_leave",
+        "project description": "API to update a leave",
+        "url": "/leave/admin/teamlead/update",
+        "method": "PUT",
+        "Roles": [
+            "teamlead",
+            "admin"
+        ],
+        "payload": {
+            "leave_id": {
+                "description": "ID of the leave to be updated",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "status": {
+                "description": "New status of the leave",
+                "datatype": "enum",
+                "required": true,
+                "validation": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "format": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "assigned": "None"
+            },
+            "reason": {
+                "description": "New reason for the leave",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_leave": {
+        "project": "delete_leave",
+        "project description": "API to delete a leave",
+        "url": "/leave/{leave_id}",
+        "method": "DELETE",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_calendar": {
+        "project": "get_leave_calendar",
+        "project description": "API to get leave calendar",
+        "url": "/leave/calender",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_calendar_tl": {
+        "project": "get_leave_calendar_tl",
+        "project description": "API to get team lead's leave calendar",
+        "url": "/leave/teamlead/calender/{employee_id}",
+        "method": "GET",
+        "Roles": [
+            "teamlead"
+        ],
+        "payload": {}
+    }
+}
