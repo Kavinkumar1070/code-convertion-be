@@ -12,6 +12,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from clone_func import *
 from nlp_func import *
 from json_func import *
+from fastapi import FastAPI, UploadFile, File
+import os
+from pathlib import Path
 
 # Initialize FastAPI
 app = FastAPI()
@@ -54,6 +57,22 @@ class FileProcessingRequest(BaseModel):
 
     
 #step1
+@app.post("/upload-folder")
+async def upload_folder(files: list[UploadFile] = File(...)):
+    upload_directory = Path("uploaded_folders")
+    upload_directory.mkdir(exist_ok=True)
+
+    for file in files:
+        file_path = upload_directory / file.filename
+
+        # Create necessary directories to mimic the folder structure
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Write the uploaded file to the destination path
+        with open(file_path, "wb") as f:
+            f.write(await file.read())
+
+    return {"message": f"Uploaded {len(files)} files successfully."}
 
 @app.post("/clone_or_copy/")
 def clone_code(request: CloneRequest):

@@ -1,0 +1,130 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f8;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    width:100%;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.main-content {
+    width: 60%; /* Fixed width to 70% */
+    display: flex;
+    flex-direction: column;
+    background-color:#f7f7f8;
+    height: 100%; /* Full height to make sure input is always at the bottom */
+    margin: 0 auto; /* Center horizontally */
+}
+
+#initial p{
+    color:#3C3D37;
+    font-size:25px;
+    
+}
+
+#initial ul li a{
+    text-decoration: none;
+    color:#697565;
+}
+
+#initial ul li{
+    font-size:20px;
+    color:#3C3D37;
+    list-style-type:none;
+    padding:10px;
+    margin-bottom:5px;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+
+.headerbox {
+    background-color: #3C3D37; /* Blue for the header */
+    color: #ffffff;
+    font-size: 30px;
+    text-align: center;
+    font-weight:bold;
+    border-bottom: 1px solid #e5e5ea;
+}
+
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f8; /* White background for chat area */
+    overflow: hidden; /* Ensure that input box is at the bottom */
+}
+
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color:#EEEEEE;
+}
+
+.message {
+    margin-bottom: 12px;
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.message.user {
+    align-self: flex-end;
+    background-color: #697565; /* Blue for user messages */
+    color: #ffffff;
+    border-radius: 15px 15px 0 15px;
+}
+
+.message.bot {
+    align-self: flex-start;
+    background-color: #ECDFCC; /* Light gray for bot messages */
+    color: #181C14;
+    border-radius: 15px 15px 15px 0;
+}
+
+.input-box {
+    display: flex;
+    align-items: center; /* Center align items vertically */
+    background-color: #EEEEEE;
+    padding: 20px;
+    position: relative;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #e5e5ea;
+    border-radius: 20px;
+    background-color:#ffffff;
+    color:#3C3D37;
+    outline: none;
+    font-size: 18px;
+    margin-right: 10px; /* Space between input and button */
+}
+
+button {
+    background-color: #3C3D37; /* Blue for the button */
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px; /* Adjusted padding */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #697565; /* Darker blue for hover effect */
+}

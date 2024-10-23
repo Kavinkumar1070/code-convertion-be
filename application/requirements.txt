@@ -1,5 +1,0 @@
-fastapi 
-uvicorn 
-GitPython
-groq
-python-multipart

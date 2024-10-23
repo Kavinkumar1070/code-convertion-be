@@ -1,0 +1,192 @@
+body {
+  margin-top: 30px;
+  padding: 0;
+  /*background: linear-gradient(to right, #8e9eab, #eef2f3);  Gradient background */
+  background-color: whitesmoke;
+  font-family: sans-serif;
+  color: #2c3e50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form{
+  margin-top:60px;
+}
+
+.login-box {
+  width: 390px;
+  padding: 40px;
+  background: #ffffff; /* Transparent background */
+  backdrop-filter: blur(100%); /* Background blur effect */
+  border-radius: 15px;
+  box-shadow: 10px 15px 32px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+  border: 5px solid rgba(255, 253, 253, 0.18);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.login-box:hover {
+  transform: scale(1.1); /* Scale effect on hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: -50px;
+  left: calc(50% - 50px);
+  border-radius: 50%;
+  border: 4px solid rgba(12, 12, 12, 0.5); /* Slightly transparent border */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  font-size: 24px;
+  color: #2e2d2d; /* Light font color for better contrast */
+}
+
+.login-box .input-box {
+  position: relative;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ffffff;
+  /* Change to a solid white on hover */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+.login-box .input-box input {
+  width: 90%;
+  padding-left:0px;
+  padding: 10px 0 10px 60px;
+  font-size: 16px;
+  height:25px;
+  color: #000000;
+  
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  outline: none;
+  transition: border-bottom 0.3s ease, box-shadow 0.3s ease;
+}
+#registerText:hover {
+  color: #7f7f7f !important; /* Ensure hover style is applied */
+}
+
+/* Focus effect for input */
+.login-box .input-box input:focus {
+  border-bottom: 2px solid #697565; /* Green border on focus */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Increase shadow on focus */
+  padding: 10px 0 10px 60px;
+}
+.login-box .input-box label {
+  position: absolute;
+  top:-24px;
+  left: 10px;
+  font-weight:bold;
+  pointer-events: none;
+  font-size: 18px;
+  transition: 0.5s;
+  color: rgba(8, 8, 8, 0.6);
+}
+::placeholder {
+  color: 
+  rgb(26, 25, 25);
+  font-size: 15px;
+  font-weight:bold;
+  padding:15px;
+  opacity: 0.25; /* Firefox */
+}
+
+.login-box .input-box input:focus ~ label,
+.login-box .input-box input:valid ~ label {
+  top: -30px;
+  left: 0;
+  margin-bottom:10px;
+  color: #007bff;
+  font-size: 15px;
+}
+
+.login-box .input-box .icon {
+  position: absolute;
+  top: 10px;
+  left:14px;
+  font-size: 23px;
+  color: rgba(29, 28, 28, 0.6); /* Adjust color to semi-transparent white */
+}
+
+.login-box .remember-forget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.8); /* Slight transparency */
+}
+
+.login-box button {
+  width: 60%;
+  margin-left:20%;
+  height: 40px;
+  background: #000000; /* Semi-transparent button */
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size:20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin-bottom: 25px;
+  transition: 0.5s ease;
+}
+
+.login-box button:hover {
+  background: #7f7f7f; /* Solid color on hover */
+  transform: translateY(-1px);
+}
+
+.register-link p {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+  
+}
+
+#message {
+  color: #d9534f; /* A more refined red color */
+  text-align: center;
+  margin-top: 15px;
+  font-size: 1rem; /* Adjust font size for readability */
+  font-weight: bold; /* Make the message stand out more */
+  padding: 20px; /* Add some padding around the text */ /* Match border color with the text */
+  border-radius: 5px; /* Rounded corners for a softer look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+
+/* Remove autofill background color for Chrome, Safari, and Firefox */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  transition: background-color red;
+  
+}
+
+/* Add padding to input elements */
+input {
+  padding: 60px; /* Adjust padding as needed */
+}
