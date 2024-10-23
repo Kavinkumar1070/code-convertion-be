@@ -7,14 +7,24 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from typing import List
-
+from fastapi.middleware.cors import CORSMiddleware
 
 from clone_func import *
 from nlp_func import *
 from json_func import *
+
 # Initialize FastAPI
 app = FastAPI()
 
+
+# CORS middleware setup
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://127.0.0.1:5500/","*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
@@ -55,7 +65,9 @@ def clone_code(request: CloneRequest):
 
     source_type = request.source_type.strip().lower()
     source_path = request.source_path.strip()
-
+    print('**************')
+    print(source_path)
+    print('**************')
     if source_type == 'local':
         if not os.path.exists(source_path):
             raise HTTPException(status_code=404, detail=f"The directory '{source_path}' does not exist.")
@@ -85,6 +97,7 @@ def copy_folders(request: FolderCopyRequest):
 
     return {"message": "Folders copied successfully."}
 
+#step 3
 
 @app.post("/process/")
 def process_all(request: FileProcessingRequest):
@@ -148,6 +161,7 @@ def process_all(request: FileProcessingRequest):
     return {"message": "Processing of routers, code, and files completed successfully."}
 
 #step4
+
 @app.post("/process_json/")
 async def process_json(roles: List[str] = Form(...)):
     try:
