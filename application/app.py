@@ -3,7 +3,7 @@ import shutil
 import logging
 import git
 import stat
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,Request
 from pydantic import BaseModel
 from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from typing import List
@@ -15,10 +15,11 @@ from json_func import *
 from fastapi import FastAPI, UploadFile, File
 import os
 from pathlib import Path
-
+from models import router
 # Initialize FastAPI
 app = FastAPI()
 
+app.include_router(router)
 
 # CORS middleware setup
 app.add_middleware(
@@ -59,7 +60,9 @@ class FileProcessingRequest(BaseModel):
 #step1
 @app.post("/upload-folder")
 async def upload_folder(files: list[UploadFile] = File(...)):
-    upload_directory = Path("uploaded_folders")
+    already= os.path.join(os.getcwd(), 'new_project')
+    clean_folder(already)
+    upload_directory = Path("new_project")
     upload_directory.mkdir(exist_ok=True)
 
     for file in files:
@@ -73,6 +76,47 @@ async def upload_folder(files: list[UploadFile] = File(...)):
             f.write(await file.read())
 
     return {"message": f"Uploaded {len(files)} files successfully."}
+
+@app.post("/git-link")
+async def git_link(request: Request):
+    data = await request.json()  # Extract the request body
+    source_path = data.get('source_path')
+    token = data.get('token', None)
+
+    if not source_path:
+        raise HTTPException(status_code=400, detail="Source path is required.")
+
+    # If a token is provided, use HTTPS with token authentication
+    if token:
+        if source_path.startswith("git@"):
+            raise HTTPException(status_code=400, detail="SSH URL cannot be used with a token. Use HTTPS URL for token authentication.")
+        # Use the token in the HTTPS URL
+        auth_repo_url = source_path.replace("https://", f"https://{token}@")
+    else:
+        # For SSH URL or HTTPS without token
+        if source_path.startswith("https://"):
+            auth_repo_url = source_path  # Use HTTPS URL without token
+        elif source_path.startswith("git@"):
+            auth_repo_url = source_path  # Use SSH URL directly
+        else:
+            raise HTTPException(status_code=400, detail="Invalid repository URL format.")
+
+    print("Received request to clone repository...")
+
+    fixed_target_directory = os.path.join(os.getcwd(), 'new_project')
+
+    # Clean the folder before cloning
+    clean_folder(fixed_target_directory)
+
+    try:
+        print(f"Cloning from: {auth_repo_url}")
+        clone_github_repo(auth_repo_url, fixed_target_directory)
+        print("Clone completed successfully.")
+        return {"message": f"Repository cloned successfully from {source_path}"}
+    except Exception as e:
+        print("Error while cloning the repository:", e)
+        raise HTTPException(status_code=500, detail=f"GitHub token is required for private repositories.")
+   
 
 @app.post("/clone_or_copy/")
 def clone_code(request: CloneRequest):
@@ -204,4 +248,5 @@ async def process_json(roles: List[str] = Form(...)):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
 
