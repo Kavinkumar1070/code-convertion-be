@@ -1,0 +1,247 @@
+Here is the analysis of the provided code:
+
+**Function and API Route Details**
+
+#### 1. `read_employee_route`
+* **Prefix**: `/admin`
+* **Function Name**: `read_employee_route`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/personal/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 2. `update_employee_data`
+* **Prefix**: `/admin`
+* **Function Name**: `update_employee_data`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/{employee_id}`
+* **HTTP Method**: `PUT`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `EmployeeUpdate`
+
+#### 3. `delete_employee_route`
+* **Prefix**: `/admin`
+* **Function Name**: `delete_employee_route`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/{employee_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `UserBase`
+
+#### 4. `create_employee`
+* **Prefix**: `/admin`
+* **Function Name**: `create_employee`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `None`
+* **Class Parameters**: `EmployeeEmploymentDetailsCreate`
+
+#### 5. `read_employee`
+* **Prefix**: `/admin`
+* **Function Name**: `read_employee`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 6. `update_employee_admin`
+* **Prefix**: `/admin`
+* **Function Name**: `update_employee_admin`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/update/admin`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: `None`
+* **Class Parameters**: `EmployeeEmploymentDetailsUpdate`
+
+#### 7. `delete_employee_details`
+* **Prefix**: `/admin`
+* **Function Name**: `delete_employee_details`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employees/{employee_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 8. `get_leave_by`
+* **Prefix**: `/admin`
+* **Function Name**: `get_leave_by`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/pending/leave/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 9. `get_leave_by_month`
+* **Prefix**: `/admin`
+* **Function Name**: `get_leave_by_month`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/{monthnumber}/{yearnumber}/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `monthnumber`: `int`, `required`, `None`
+	+ `yearnumber`: `int`, `required`, `None`
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 10. `get_leaves_by_employee`
+* **Prefix**: `/admin`
+* **Function Name**: `get_leaves_by_employee`
+* **Roles**: `admin`, `employee`, `teamlead`
+* **URL/Endpoint**: `/leaves/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 11. `delete_leave`
+* **Prefix**: `/admin`
+* **Function Name**: `delete_leave`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/{leave_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `leave_id`: `int`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### 12. `update_leave`
+* **Prefix**: `/admin`
+* **Function Name**: `update_leave`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/update/leave/calender/`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: `None`
+* **Class Parameters**: `LeaveCalendarUpdate`
+
+#### 13. `create_leave_calendar`
+* **Prefix**: `/admin`
+* **Function Name**: `create_leave_calendar`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/calender`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `None`
+* **Class Parameters**: `None`
+
+#### 14. `get_leave_calendar`
+* **Prefix**: `/admin`
+* **Function Name**: `get_leave_calendar`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/calender/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+**Class Definitions**
+
+#### 1. `EmployeeBase`
+* **Class Name**: `EmployeeBase`
+* **Fields**:
+	+ `firstname`: `string`, `required`, `None`
+	+ `lastname`: `string`, `required`, `None`
+	+ `dateofbirth`: `string`, `required`, `None`
+	+ `contactnumber`: `int`, `required`, `None`
+	+ `emailaddress`: `EmailStr`, `required`, `None`
+	+ `address`: `string`, `required`, `None`
+	+ `nationality`: `string`, `required`, `None`
+	+ `gender`: `string`, `required`, `None`
+	+ `maritalstatus`: `string`, `required`, `None`
+
+#### 2. `EmployeeUpdate`
+* **Class Name**: `EmployeeUpdate`
+* **Fields**:
+	+ `firstname`: `string`, `optional`, `None`
+	+ `lastname`: `string`, `optional`, `None`
+	+ `dateofbirth`: `string`, `optional`, `None`
+	+ `contactnumber`: `int`, `optional`, `None`
+	+ `emailaddress`: `EmailStr`, `optional`, `None`
+	+ `address`: `string`, `optional`, `None`
+	+ `nationality`: `string`, `optional`, `None`
+	+ `gender`: `string`, `optional`, `None`
+	+ `maritalstatus`: `string`, `optional`, `None`
+
+#### 3. `UserBase`
+* **Class Name**: `UserBase`
+* **Fields**:
+	+ `first_name`: `string`, `required`, `None`
+	+ `username`: `string`, `required`, `None`
+	+ `email`: `EmailStr`, `required`, `None`
+	+ `age`: `int`, `optional`, `None`
+	+ `favorite_band`: `MusicBand`, `optional`, `None`
+	+ `website`: `AnyUrl`, `optional`, `None`
+
+#### 4. `MusicBand`
+* **Enum Name**: `MusicBand`
+* **Values**:
+	+ `AEROSMITH`: `"AEROSMITH"`
+	+ `QUEEN`: `"QUEEN"`
+	+ `ACDC`: `"AC/DC"`
+
+#### 5. `EmployeeEmploymentDetailsBase`
+* **Class Name**: `EmployeeEmploymentDetailsBase`
+* **Fields**:
+	+ `employment_id`: `string`, `required`, `None`
+	+ `job_position`: `string`, `required`, `None`
+	+ `email`: `EmailStr`, `required`, `None`
+	+ `password`: `string`, `required`, `None`
+	+ `department`: `string`, `required`, `None`
+	+ `start_date`: `date`, `required`, `None`
+	+ `employment_type`: `string`, `required`, `None`
+	+ `reporting_manager`: `string`, `optional`, `None`
+	+ `work_location`: `string`, `optional`, `None`
+	+ `basic_salary`: `float`, `optional`, `None`
+
+#### 6. `EmployeeEmploymentDetailsCreate`
+* **Class Name**: `EmployeeEmploymentDetailsCreate`
+* **Fields**:
+	+ `employment_id`: `string`, `required`, `None`
+	+ `job_position`: `string`, `required`, `None`
+	+ `email`: `EmailStr`, `required`, `None`
+	+ `password`: `string`, `required`, `None`
+	+ `department`: `string`, `required`, `None`
+	+ `start_date`: `date`, `required`, `None`
+	+ `employment_type`: `string`, `required`, `None`
+	+ `reporting_manager`: `string`, `optional`, `None`
+	+ `work_location`: `string`, `optional`, `None`
+	+ `basic_salary`: `float`, `optional`, `None`
+
+#### 7. `EmployeeEmploymentDetailsUpdate`
+* **Class Name**: `EmployeeEmploymentDetailsUpdate`
+* **Fields**:
+	+ `employment_id`: `string`, `optional`, `None`
+	+ `job_position`: `string`, `optional`, `None`
+	+ `department`: `string`, `optional`, `None`
+	+ `start_date`: `date`, `optional`, `None`
+	+ `employment_type`: `string`, `optional`, `None`
+	+ `reporting_manager`: `string`, `optional`, `None`
+	+ `work_location`: `string`, `optional`, `None`
+	+ `basic_salary`: `float`, `optional`, `None`
+
+#### 8. `LeaveDuration`
+* **Enum Name**: `LeaveDuration`
+* **Values**:
+	+ `ONE_DAY`: `"oneday"`
+	+ `HALF_DAY`: `"halfday"`
+
+#### 9. `LeaveStatus`
+* **Enum Name**: `LeaveStatus`
+* **Values**:
+	+ `PENDING`: `"pending"`
+	+ `APPROVED`: `"approved"`
+	+ `REJECTED`: `"rejected"`
+
+#### 10. `LeaveCalendarUpdate`
+* **Class Name**: `LeaveCalendarUpdate`
+* **Fields**:
+	+ `employee_id`: `string`, `required`, `None`
+	+ `sick_leave`: `int`, `optional`, `None`
+	+ `personal_leave`: `int`, `optional`, `None`
+	+ `vacation_leave`: `int`, `optional`, `None`

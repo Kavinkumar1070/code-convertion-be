@@ -1,0 +1,143 @@
+Here is the analysis of the provided code in leave.py:
+
+### Function and API Route Details:
+
+#### apply_leave
+
+* **Prefix**: `/leave`
+* **Function Name**: `apply_leave`
+* **Roles**: `employee`, `admin`
+* **URL/Endpoint**: `/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeLeaveCreate`
+
+#### get_leaves_by_employee
+
+* **Prefix**: `/leave`
+* **Function Name**: `get_leaves_by_employee`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/details`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+#### get_leave_by
+
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_by`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/pending/leave`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+#### get_leave_by_month
+
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_by_month`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/{monthnumber}/{yearnumber}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `monthnumber`: `int`, `required`
+	+ `yearnumber`: `int`, `required`
+* **Class Parameters**: None
+
+#### update_leave
+
+* **Prefix**: `/leave`
+* **Function Name**: `update_leave`
+* **Roles**: `teamlead`, `admin`
+* **URL/Endpoint**: `/admin/teamlead/update`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeLeaveUpdate`
+
+#### delete_leave
+
+* **Prefix**: `/leave`
+* **Function Name**: `delete_leave`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/{leave_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `leave_id`: `int`, `required`
+* **Class Parameters**: None
+
+#### get_leave_calendar
+
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_calendar`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/calender`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+#### get_leave_calendar_tl
+
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_calendar_tl`
+* **Roles**: `teamlead`
+* **URL/Endpoint**: `/teamlead/calender/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `employee_id`: `str`, `required`
+* **Class Parameters**: None
+
+### Class Definitions:
+
+#### EmployeeLeaveBase
+
+* **Class Name**: `EmployeeLeaveBase`
+* **Fields**:
+	+ `leave_type`: `str`, `required`
+	+ `duration`: `LeaveDuration`, `required`
+	+ `start_date`: `date`, `required`
+	+ `total_days`: `int`, `required`, `gt=0`
+	+ `reason`: `Optional[str]`, `optional`
+
+#### EmployeeLeaveCreate
+
+* **Class Name**: `EmployeeLeaveCreate`
+* **Fields** (inherited from `EmployeeLeaveBase`):
+	+ `leave_type`: `str`, `required`
+	+ `duration`: `LeaveDuration`, `required`
+	+ `start_date`: `date`, `required`
+	+ `total_days`: `int`, `required`, `gt=0`
+	+ `reason`: `Optional[str]`, `optional`
+
+#### EmployeeLeaveUpdate
+
+* **Class Name**: `EmployeeLeaveUpdate`
+* **Fields**:
+	+ `leave_id`: `int`, `required`
+	+ `status`: `LeaveStatus`, `required`
+	+ `reason`: `Optional[str]`, `optional`
+
+#### LeaveCalendarUpdate
+
+* **Class Name**: `LeaveCalendarUpdate`
+* **Fields**:
+	+ `employee_id`: `str`, `required`
+	+ `sick_leave`: `Optional[int]`, `optional`
+	+ `personal_leave`: `Optional[int]`, `optional`
+	+ `vacation_leave`: `Optional[int]`, `optional`
+
+### Enum Definitions:
+
+#### LeaveDuration
+
+* **Enum Name**: `LeaveDuration`
+* **Enums**:
+	+ `ONE_DAY`: `"oneday"`
+	+ `HALF_DAY`: `"halfday"`
+
+#### LeaveStatus
+
+* **Enum Name**: `LeaveStatus`
+* **Enums**:
+	+ `PENDING`: `"pending"`
+	+ `APPROVED`: `"approved"`
+	+ `REJECTED`: `"rejected"`
