@@ -2,37 +2,37 @@ Here is the analysis of the provided code:
 
 ### Function and API Route Details:
 
-#### 1. `apply_leave`
+#### Function Example 1: apply_leave
 * **Prefix**: `/leave`
 * **Function Name**: `apply_leave`
-* **Roles**: `employee`, `admin`, `teamlead`
+* **Roles**: `employee, admin, teamlead`
 * **URL/Endpoint**: `/`
 * **HTTP Method**: `POST`
 * **Path Parameters**: None
 * **Class Parameters**: `EmployeeLeaveCreate`
 
-#### 2. `get_leaves_by_employee`
+#### Function Example 2: get_leaves_by_employee
 * **Prefix**: `/leave`
 * **Function Name**: `get_leaves_by_employee`
-* **Roles**: `employee`, `teamlead`
+* **Roles**: `employee, teamlead`
 * **URL/Endpoint**: `/details`
 * **HTTP Method**: `GET`
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-#### 3. `get_leave_by`
+#### Function Example 3: get_leave_by
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_by`
-* **Roles**: `employee`, `teamlead`
+* **Roles**: `employee, teamlead`
 * **URL/Endpoint**: `/pending/leave`
 * **HTTP Method**: `GET`
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-#### 4. `get_leave_by_month`
+#### Function Example 4: get_leave_by_month
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_by_month`
-* **Roles**: `employee`, `teamlead`
+* **Roles**: `employee, teamlead`
 * **URL/Endpoint**: `/{monthnumber}/{yearnumber}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
@@ -40,35 +40,35 @@ Here is the analysis of the provided code:
 	+ `yearnumber`: `int`, `required`
 * **Class Parameters**: None
 
-#### 5. `update_leave`
+#### Function Example 5: update_leave
 * **Prefix**: `/leave`
 * **Function Name**: `update_leave`
-* **Roles**: `teamlead`, `admin`
+* **Roles**: `teamlead, admin`
 * **URL/Endpoint**: `/admin/teamlead/update`
 * **HTTP Method**: `PUT`
 * **Path Parameters**: None
 * **Class Parameters**: `EmployeeLeaveUpdate`
 
-#### 6. `delete_leave`
+#### Function Example 6: delete_leave
 * **Prefix**: `/leave`
 * **Function Name**: `delete_leave`
-* **Roles**: `employee`, `teamlead`
+* **Roles**: `employee, teamlead`
 * **URL/Endpoint**: `/{leave_id}`
 * **HTTP Method**: `DELETE`
 * **Path Parameters**:
 	+ `leave_id`: `int`, `required`
 * **Class Parameters**: None
 
-#### 7. `get_leave_calendar`
+#### Function Example 7: get_leave_calendar
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_calendar`
-* **Roles**: `employee`, `teamlead`
+* **Roles**: `employee, teamlead`
 * **URL/Endpoint**: `/calender`
 * **HTTP Method**: `GET`
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-#### 8. `get_leave_calendar_tl`
+#### Function Example 8: get_leave_calendar_tl
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_calendar_tl`
 * **Roles**: `teamlead`
@@ -80,30 +80,43 @@ Here is the analysis of the provided code:
 
 ### Class Definitions:
 
-#### 1. `EmployeeLeaveBase`
-* **Class Name**: `EmployeeLeaveBase`
-* **Fields**:
-	- `leave_type`: `str`, `required`, `None`
-	- `duration`: `LeaveDuration`, `required`, `None`
-	- `start_date`: `date`, `required`, `None`
-	- `total_days`: `int`, `required`, `gt=0`
-	- `reason`: `Optional[str]`, `optional`, `None`
-
-#### 2. `EmployeeLeaveCreate`
+#### Class Example: EmployeeLeaveCreate
 * **Class Name**: `EmployeeLeaveCreate`
-* **Fields**: Same as `EmployeeLeaveBase`
+* **Fields**:
+	+ `leave_type`: `string`, `required`
+	+ `duration`: `LeaveDuration`, `required`
+	+ `start_date`: `date`, `required`
+	+ `total_days`: `int`, `required`, `gt=0`
+	+ `reason`: `string`, `optional`
 
-#### 3. `EmployeeLeaveUpdate`
+#### Class Example: EmployeeLeaveUpdate
 * **Class Name**: `EmployeeLeaveUpdate`
 * **Fields**:
-	- `leave_id`: `int`, `required`, `None`
-	- `status`: `LeaveStatus`, `required`, `None`
-	- `reason`: `Optional[str]`, `optional`, `None`
+	+ `leave_id`: `int`, `required`
+	+ `status`: `LeaveStatus`, `required`
+	+ `reason`: `string`, `optional`
 
-#### 4. `LeaveCalendarUpdate`
+#### Class Example: LeaveCalendarUpdate
 * **Class Name**: `LeaveCalendarUpdate`
 * **Fields**:
-	- `employee_id`: `str`, `required`, `None`
-	- `sick_leave`: `Optional[int]`, `optional`, `None`
-	- `personal_leave`: `Optional[int]`, `optional`, `None`
-	- `vacation_leave`: `Optional[int]`, `optional`, `None`
+	+ `employee_id`: `str`, `required`
+	+ `sick_leave`: `int`, `optional`
+	+ `personal_leave`: `int`, `optional`
+	+ `vacation_leave`: `int`, `optional`
+
+### Enum Definitions:
+
+#### Enum Example: LeaveDuration
+* **Enum Name**: `LeaveDuration`
+* **Values**:
+	+ `ONE_DAY`: `"oneday"`
+	+ `HALF_DAY`: `"halfday"`
+
+#### Enum Example: LeaveStatus
+* **Enum Name**: `LeaveStatus`
+* **Values**:
+	+ `PENDING`: `"pending"`
+	+ `APPROVED`: `"approved"`
+	+ `REJECTED`: `"rejected"`
+
+Let me know if you need any further assistance!

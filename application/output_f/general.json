@@ -1,18 +1,31 @@
 {
     "bot_response": {
         "project": "bot_response",
-        "project description": "about bot_response",
+        "project description": "get bot response based on user input",
         "url": "/general/gen/{user_input}",
         "method": "GET",
-        "Roles": [],
+        "Roles": [
+            "guest"
+        ],
         "payload": {
             "user_input": {
-                "description": "about user input for bot_response",
+                "description": "path parameter to get bot response",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
+            },
+            "GeneralQuestion": {
+                "description": "class parameter for bot response",
+                "question": {
+                    "description": "question asked by user for bot response",
+                    "datatype": "string",
+                    "required": true,
+                    "validation": "None",
+                    "format": "None",
+                    "assigned": "None"
+                }
             }
         }
     }

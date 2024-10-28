@@ -1,0 +1,47 @@
+Here are the details of the functions and classes in the `employee.py` file:
+
+**Function Example 1:**
+
+* **Prefix**: `/employee`
+* **Function Name**: `read_employee`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/employees/reademployee`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+**Class Example 1:**
+
+* **Class Name**: `EmployeeEmploymentDetailsBase`
+    - `employment_id`: `string`, `required`, `None`
+    - `job_position`: `string`, `required`, `None`
+    - `email`: `EmailStr`, `required`, `None`
+    - `password`: `string`, `required`, `None`
+    - `department`: `string`, `required`, `None`
+    - `start_date`: `date`, `required`, `None`
+    - `employment_type`: `string`, `required`, `None`
+    - `reporting_manager`: `string`, `optional`, `None`
+    - `work_location`: `string`, `optional`, `None`
+    - `basic_salary`: `float`, `optional`, `None`
+
+**Class Example 2:**
+
+* **Class Name**: `EmployeeEmploymentDetailsCreate`
+    - (inherits from `EmployeeEmploymentDetailsBase`)
+
+**Class Example 3:**
+
+* **Class Name**: `EmployeeEmploymentDetailsUpdate`
+    - `employment_id`: `string`, `optional`, `default="cds0001"`
+    - `job_position`: `string`, `optional`, `None`
+    - `department`: `string`, `optional`, `None`
+    - `start_date`: `date`, `optional`, `None`
+    - `employment_type`: `string`, `optional`, `None`
+    - `reporting_manager`: `string`, `optional`, `None`
+    - `work_location`: `string`, `optional`, `None`
+    - `employee_email`: `EmailStr`, `optional`, `None`
+    - `basic_salary`: `float`, `optional`, `None`
+
+No Enum definitions found in this code.
+
+Let me know if you need any further assistance!

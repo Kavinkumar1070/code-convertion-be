@@ -1,0 +1,21 @@
+Here is the analysis of the provided code:
+
+#### Function Example 1:
+
+* **Prefix**: `/general`
+* **Function Name**: `bot_response`
+* **Roles**: `none`
+* **URL/Endpoint**: `/gen/{user_input}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `user_input`: `string`, `required`, `None`
+* **Class Parameters**: `None`
+
+#### Class Example:
+
+* **Class Name**: `GeneralQuestion`
+	+ `question`: `string`, `required`, `None`
+
+#### No Enum Definitions were found in the code.
+
+Note: There are no roles, dependencies, or class-based payloads defined in the code. The `GeneralQuestion` class is defined but not used in the `bot_response` function.

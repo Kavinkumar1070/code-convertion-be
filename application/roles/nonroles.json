@@ -1,21 +1,9 @@
 {
-    "read_employee": {
-        "project": "read_employee",
-        "project description": "Retrieve employee details",
-        "url": "/employees/reademployee",
-        "method": "GET",
-        "Roles": [
-            "employee",
-            "teamlead"
-        ],
-        "payload": {}
-    },
     "EmployeeEmploymentDetailsBase": {
         "project": "EmployeeEmploymentDetailsBase",
         "project description": "Base employment details",
         "url": "",
         "method": "",
-        "Roles": [],
         "payload": {
             "employment_id": {
                 "description": "Employment ID",
@@ -104,7 +92,6 @@
         "project description": "Create employment details",
         "url": "",
         "method": "",
-        "Roles": [],
         "payload": {
             "employment_id": {
                 "description": "Employment ID",
@@ -193,7 +180,6 @@
         "project description": "Update employment details",
         "url": "",
         "method": "",
-        "Roles": [],
         "payload": {
             "employment_id": {
                 "description": "Employment ID",
@@ -264,6 +250,113 @@
                 "datatype": "float",
                 "required": false,
                 "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "bot_response": {
+        "project": "bot_response",
+        "project description": "get bot response based on user input",
+        "url": "/general/gen/{user_input}",
+        "method": "GET",
+        "payload": {
+            "user_input": {
+                "description": "path parameter to get bot response",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "GeneralQuestion": {
+                "description": "class parameter for bot response",
+                "question": {
+                    "description": "question asked by user for bot response",
+                    "datatype": "string",
+                    "required": true,
+                    "validation": "None",
+                    "format": "None",
+                    "assigned": "None"
+                }
+            }
+        }
+    },
+    "create_employee_route": {
+        "project": "create_employee_route",
+        "project description": "Create a new employee",
+        "url": "/personal/employees",
+        "method": "POST",
+        "payload": {
+            "firstname": {
+                "description": "Employee's first name for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "lastname": {
+                "description": "Employee's last name for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "dateofbirth": {
+                "description": "Employee's date of birth for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "validate_date_format",
+                "format": "//^[0-9]{4}-[0-9]{2}-[0-9]{2}$//",
+                "assigned": "None"
+            },
+            "contactnumber": {
+                "description": "Employee's contact number for create_employee_route",
+                "datatype": "integer",
+                "required": true,
+                "validation": "validate_phone_number_length",
+                "format": "//^\\\\d{10,}$//",
+                "assigned": "None"
+            },
+            "emailaddress": {
+                "description": "Employee's email address for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "address": {
+                "description": "Employee's address for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "nationality": {
+                "description": "Employee's nationality for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "gender": {
+                "description": "Employee's gender for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
+                "format": "None",
+                "assigned": "None"
+            },
+            "maritalstatus": {
+                "description": "Employee's marital status for create_employee_route",
+                "datatype": "string",
+                "required": true,
+                "validation": "none",
                 "format": "None",
                 "assigned": "None"
             }

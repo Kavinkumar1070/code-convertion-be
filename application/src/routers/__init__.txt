@@ -1,0 +1,5 @@
+Please provide the code from `__init__.py` that you would like me to analyze. I'll capture the details for each function and class according to the specified format.
+
+(Note: I'll assume the code is written in Python using a web framework like FastAPI or Flask, and that it follows standard conventions for API routes, function definitions, and class models.)
+
+ Waiting for your code...

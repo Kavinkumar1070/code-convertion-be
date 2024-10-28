@@ -1,94 +1,133 @@
 {
-    "create_employee_route": {
-        "project": "create_employee_route",
-        "project description": "Create a new employee",
-        "url": "/personal/employees",
+    "get_leaves_by_employee": {
+        "project": "get_leaves_by_employee",
+        "project description": "Retrieve leaves by employee",
+        "url": "/leave/details",
+        "method": "GET",
+        "payload": {}
+    },
+    "read_employee": {
+        "project": "read_employee",
+        "project description": "Retrieve employee details",
+        "url": "/employees/reademployee",
+        "method": "GET",
+        "payload": {}
+    },
+    "apply_leave": {
+        "project": "apply_leave",
+        "project description": "apply leave based on employee details",
+        "url": "/leave/",
         "method": "POST",
-        "Roles": [],
         "payload": {
-            "firstname": {
-                "description": "Employee's first name for create_employee_route",
+            "leave_type": {
+                "description": "leave type for apply leave",
                 "datatype": "string",
                 "required": true,
-                "validation": "none",
+                "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "lastname": {
-                "description": "Employee's last name for create_employee_route",
-                "datatype": "string",
+            "duration": {
+                "description": "duration of leave",
+                "datatype": "enum",
                 "required": true,
-                "validation": "none",
+                "validation": [
+                    "oneday",
+                    "halfday"
+                ],
+                "format": [
+                    "oneday",
+                    "halfday"
+                ],
+                "assigned": "None"
+            },
+            "start_date": {
+                "description": "start date of leave",
+                "datatype": "date",
+                "required": true,
+                "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "dateofbirth": {
-                "description": "Employee's date of birth for create_employee_route",
-                "datatype": "string",
+            "total_days": {
+                "description": "total days of leave",
+                "datatype": "int",
                 "required": true,
-                "validation": "validate_date_format",
-                "format": "//^[0-9]{4}-[0-9]{2}-[0-9]{2}$//",
+                "validation": {
+                    "gt": 0
+                },
+                "format": "//^[1-9][0-9]*$",
                 "assigned": "None"
             },
-            "contactnumber": {
-                "description": "Employee's contact number for create_employee_route",
-                "datatype": "integer",
-                "required": true,
-                "validation": "validate_phone_number_length",
-                "format": "//^\\\\d{10,}$//",
-                "assigned": "None"
-            },
-            "emailaddress": {
-                "description": "Employee's email address for create_employee_route",
+            "reason": {
+                "description": "reason for leave",
                 "datatype": "string",
-                "required": true,
-                "validation": "none",
-                "format": "None",
-                "assigned": "None"
-            },
-            "address": {
-                "description": "Employee's address for create_employee_route",
-                "datatype": "string",
-                "required": true,
-                "validation": "none",
-                "format": "None",
-                "assigned": "None"
-            },
-            "nationality": {
-                "description": "Employee's nationality for create_employee_route",
-                "datatype": "string",
-                "required": true,
-                "validation": "none",
-                "format": "None",
-                "assigned": "None"
-            },
-            "gender": {
-                "description": "Employee's gender for create_employee_route",
-                "datatype": "string",
-                "required": true,
-                "validation": "none",
-                "format": "None",
-                "assigned": "None"
-            },
-            "maritalstatus": {
-                "description": "Employee's marital status for create_employee_route",
-                "datatype": "string",
-                "required": true,
-                "validation": "none",
+                "required": false,
+                "validation": "None",
                 "format": "None",
                 "assigned": "None"
             }
         }
+    },
+    "get_leave_by": {
+        "project": "get_leave_by",
+        "project description": "Get leave by employee",
+        "url": "/leave/pending/leave",
+        "method": "GET",
+        "payload": {}
+    },
+    "get_leave_by_month": {
+        "project": "get_leave_by_month",
+        "project description": "Get leave by month",
+        "url": "/leave/{monthnumber}/{yearnumber}",
+        "method": "GET",
+        "payload": {
+            "monthnumber": {
+                "description": "month number for get leave by month",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "yearnumber": {
+                "description": "year number for get leave by month",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_leave": {
+        "project": "delete_leave",
+        "project description": "Delete leave",
+        "url": "/leave/{leave_id}",
+        "method": "DELETE",
+        "payload": {
+            "leave_id": {
+                "description": "leave ID to delete",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_leave_calendar": {
+        "project": "get_leave_calendar",
+        "project description": "Get leave calendar",
+        "url": "/leave/calender",
+        "method": "GET",
+        "payload": {}
     },
     "read_employee_route": {
         "project": "read_employee_route",
         "project description": "Retrieve employee details",
         "url": "/personal/employees",
         "method": "GET",
-        "Roles": [
-            "employee",
-            "teamlead"
-        ],
         "payload": {}
     },
     "update_employee_data": {
@@ -96,10 +135,6 @@
         "project description": "Update an existing employee",
         "url": "/personal/employees",
         "method": "PUT",
-        "Roles": [
-            "employee",
-            "teamlead"
-        ],
         "payload": {
             "firstname": {
                 "description": "Employee's first name for update_employee_data",

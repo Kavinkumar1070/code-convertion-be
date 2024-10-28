@@ -1,0 +1,96 @@
+Here is the analysis of the provided code:
+
+**Function and API Route Details:**
+
+1. **Prefix**: `/admin/roles`
+* **Function Name**: `create_role`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `RoleCreate`
+
+2. **Prefix**: `/admin/roles`
+* **Function Name**: `delete_role`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/{role_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `role_id`: `int`, `required`, `None`
+* **Class Parameters**: `None`
+
+3. **Prefix**: `/admin/roles`
+* **Function Name**: `update_role`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: None
+* **Class Parameters**: `UpdateRole`
+
+4. **Prefix**: `/admin/roles`
+* **Function Name**: `get_roles`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: `None`
+
+5. **Prefix**: `/admin/roles`
+* **Function Name**: `assign_role_to_employee`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/employee/role`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeRole`
+
+6. **Prefix**: `/admin/roles`
+* **Function Name**: `create_new_role_function`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/functions/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `RoleFunctionCreate`
+
+7. **Prefix**: `/admin/roles`
+* **Function Name**: `read_role_functions`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/{role_id}/functions/`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `role_id`: `int`, `required`, `None`
+* **Class Parameters**: `None`
+
+8. **Prefix**: `/admin/roles`
+* **Function Name**: `delete_existing_role_function`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/functions/{id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `id`: `int`, `required`, `None`
+* **Class Parameters**: `None`
+
+**Class Definitions:**
+
+1. **Class Name**: `RoleCreate`
+	* `name`: `string`, `required`, `None`
+	* `sick_leave`: `int`, `required`, `None`
+	* `personal_leave`: `int`, `required`, `None`
+	* `vacation_leave`: `int`, `required`, `None`
+
+2. **Class Name**: `UpdateRole`
+	* `role_id`: `int`, `required`, `None`
+	* `new_name`: `string`, `required`, `None`
+	* `sick_leave`: `Optional[int]`, `optional`, `None`
+	* `personal_leave`: `Optional[int]`, `optional`, `None`
+	* `vacation_leave`: `Optional[int]`, `optional`, `None`
+
+3. **Class Name**: `EmployeeRole`
+	* `employee_id`: `string`, `required`, `None`
+	* `role_id`: `int`, `required`, `None`
+
+4. **Class Name**: `RoleFunctionCreate`
+	* `role_id`: `int`, `required`, `None`
+	* `function`: `string`, `required`, `None`
+	* `jsonfile`: `string`, `required`, `None`
+
+Note: There are no enum definitions in the provided code.

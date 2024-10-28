@@ -9,8 +9,32 @@
         ],
         "payload": {
             "name": {
-                "description": "Name of the role",
+                "description": "Name of the new role",
                 "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "sick_leave": {
+                "description": "Sick leave of the new role",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "personal_leave": {
+                "description": "Personal leave of the new role",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "vacation_leave": {
+                "description": "Vacation leave of the new role",
+                "datatype": "int",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -20,17 +44,16 @@
     },
     "delete_role": {
         "project": "delete_role",
-        "project description": "Delete a role",
+        "project description": "Delete an existing role",
         "url": "/admin/roles/{role_id}",
         "method": "DELETE",
         "Roles": [
             "admin"
         ],
-        "payload": {},
-        "path_parameters": {
+        "payload": {
             "role_id": {
-                "description": "ID of the role to delete",
-                "datatype": "integer",
+                "description": "ID of the role to be deleted",
+                "datatype": "int",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -40,7 +63,7 @@
     },
     "update_role": {
         "project": "update_role",
-        "project description": "Update a role",
+        "project description": "Update an existing role",
         "url": "/admin/roles/",
         "method": "PUT",
         "Roles": [
@@ -48,9 +71,41 @@
         ],
         "payload": {
             "role_id": {
-                "description": "ID of the role to update",
-                "datatype": "integer",
+                "description": "ID of the role to be updated",
+                "datatype": "int",
                 "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "new_name": {
+                "description": "New name of the role",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "sick_leave": {
+                "description": "Updated sick leave of the role",
+                "datatype": "int",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "personal_leave": {
+                "description": "Updated personal leave of the role",
+                "datatype": "int",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "vacation_leave": {
+                "description": "Updated vacation leave of the role",
+                "datatype": "int",
+                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -59,7 +114,7 @@
     },
     "get_roles": {
         "project": "get_roles",
-        "project description": "Get all roles",
+        "project description": "Retrieve all roles",
         "url": "/admin/roles/",
         "method": "GET",
         "Roles": [
@@ -75,7 +130,24 @@
         "Roles": [
             "admin"
         ],
-        "payload": {}
+        "payload": {
+            "employee_id": {
+                "description": "ID of the employee to assign the role",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "role_id": {
+                "description": "ID of the role to be assigned",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
     },
     "create_new_role_function": {
         "project": "create_new_role_function",
@@ -85,21 +157,45 @@
         "Roles": [
             "admin"
         ],
-        "payload": {}
+        "payload": {
+            "role_id": {
+                "description": "ID of the role for the new function",
+                "datatype": "int",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "function": {
+                "description": "Name of the new function",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "jsonfile": {
+                "description": "JSON file for the new function",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
     },
     "read_role_functions": {
         "project": "read_role_functions",
-        "project description": "Read role functions",
+        "project description": "Retrieve all functions for a role",
         "url": "/admin/roles/{role_id}/functions/",
         "method": "GET",
         "Roles": [
             "admin"
         ],
-        "payload": {},
-        "path_parameters": {
+        "payload": {
             "role_id": {
-                "description": "ID of the role to read functions",
-                "datatype": "integer",
+                "description": "ID of the role to retrieve functions",
+                "datatype": "int",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -115,11 +211,10 @@
         "Roles": [
             "admin"
         ],
-        "payload": {},
-        "path_parameters": {
+        "payload": {
             "id": {
-                "description": "ID of the role function to delete",
-                "datatype": "integer",
+                "description": "ID of the function to be deleted",
+                "datatype": "int",
                 "required": true,
                 "validation": "None",
                 "format": "None",

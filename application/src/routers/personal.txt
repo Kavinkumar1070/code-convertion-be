@@ -1,0 +1,77 @@
+Here are the details for each function and class:
+
+**Function and API Route Details:**
+
+### Function Example 1:
+* **Prefix**: `/personal`
+* **Function Name**: `create_employee_route`
+* **Roles**: `none`
+* **URL/Endpoint**: `/employees`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `EmployeeCreate`
+
+### Function Example 2:
+* **Prefix**: `/personal`
+* **Function Name**: `read_employee_route`
+* **Roles**: `employee, teamlead`
+* **URL/Endpoint**: `/employees`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `none`
+
+### Function Example 3:
+* **Prefix**: `/personal`
+* **Function Name**: `update_employee_data`
+* **Roles**: `employee, teamlead`
+* **URL/Endpoint**: `/employees`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: `none`
+* **Class Parameters**: `EmployeeUpdate`
+
+**Parameter Details:**
+
+### Path Parameters:
+* `none`
+
+### Query or Body Parameters:
+* `EmployeeCreate` (for `create_employee_route`)
+* `EmployeeUpdate` (for `update_employee_data`)
+
+### Class Parameters:
+* `EmployeeCreate` (for `create_employee_route`)
+* `EmployeeUpdate` (for `update_employee_data`)
+
+**Class Definitions:**
+
+### Class Example 1:
+* **Class Name**: `EmployeeBase`
+    - `firstname`: `string`, `required`, `none`
+    - `lastname`: `string`, `required`, `none`
+    - `dateofbirth`: `string`, `required`, `validate_date_format`
+    - `contactnumber`: `int`, `required`, `validate_phone_number_length`
+    - `emailaddress`: `EmailStr`, `required`, `none`
+    - `address`: `string`, `required`, `none`
+    - `nationality`: `string`, `required`, `none`
+    - `gender`: `string`, `required`, `none`
+    - `maritalstatus`: `string`, `required`, `none`
+
+### Class Example 2:
+* **Class Name**: `EmployeeCreate`
+    - Inherited from `EmployeeBase`
+
+### Class Example 3:
+* **Class Name**: `EmployeeUpdate`
+    - `firstname`: `Optional[str]`, `optional`, `none`
+    - `lastname`: `Optional[str]`, `optional`, `none`
+    - `dateofbirth`: `Optional[str]`, `optional`, `validate_date_format`
+    - `contactnumber`: `Optional[int]`, `optional`, `validate_phone_number_length`
+    - `emailaddress`: `Optional[EmailStr]`, `optional`, `none`
+    - `address`: `Optional[str]`, `optional`, `none`
+    - `nationality`: `Optional[str]`, `optional`, `none`
+    - `gender`: `Optional[str]`, `optional`, `none`
+    - `maritalstatus`: `Optional[str]`, `optional`, `none`
+
+Note: The `validate_date_format` and `validate_phone_number_length` are validation constraints implemented using Pydantic's built-in validators.
+
+I didn't find any enum definitions in the provided code.
