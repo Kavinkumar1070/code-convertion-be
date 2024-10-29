@@ -86,29 +86,36 @@ def find_folder(target_folder_name, search_path):
     logging.warning(f"Folder '{target_folder_name}' not found in '{search_path}'")
     return None
 
-def copy_selected_folders(source_directory, target_directory, selected_folders):
-    """Copies selected folders from source_directory to target_directory."""
+
+def copy_selected_folders(source_directory, target_directory, selected_folders, root_directory):
+    """
+    Copies selected folders from source_directory to target_directory.
+    Checks if the root_directory exists in source_directory before proceeding.
+    """
+    # Check if the root directory exists in the source directory
+    root_folder_path = find_folder(root_directory, source_directory)
+    if not root_folder_path:
+        return None # Exit the function if the root directory is not found
+    
     # Ensure the target directory exists
     os.makedirs(target_directory, exist_ok=True)
 
     # Iterate over the selected folders
     for folder in selected_folders:
-        folder_path = find_folder(folder, source_directory)  # Use find_folder to get the full path
+        folder_path = find_folder(folder, root_folder_path)  # Use find_folder to get the full path inside root_directory
 
         # Check if the folder was found
         if folder_path:
-            target_folder_path = os.path.join(target_directory, os.path.basename(folder_path))
             try:
+                target_folder_path = os.path.join(target_directory, os.path.basename(folder_path))
+            
                 # Copy the entire folder to the target directory
                 shutil.copytree(folder_path, target_folder_path)
-                logging.info(f"Copied folder: '{folder_path}' to '{target_folder_path}'")
+                return {"message":f"Copied folder: '{folder_path}' to '{target_folder_path}'"} 
             except Exception as e:
-                logging.error(f"Failed to copy '{folder}': {e}")
-                raise HTTPException(status_code=500, detail=f"Failed to copy '{folder}': {e}")
+                return {"message":f"Failed to copy '{folder}': {e}"}
         else:
-            logging.warning(f"Folder '{folder}' does not exist in the source directory.")
-
-
+            return {"message":f"Folder '{folder}' does not exist in the root directory '{root_directory}'."}
 
 #step 3
 

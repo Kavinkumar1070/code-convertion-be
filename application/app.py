@@ -128,14 +128,16 @@ def copy_folders(request: FolderCopyRequest):
     project_directory = os.path.join(current_working_directory, 'Cloned_Project') 
     target_directory = os.path.join(current_working_directory, request.project_name)  
     #need to check folder name available in project  ---***************************
-    selected_folders = [request.routers_name, request.schemas_name]  # Specify the folders to copy
+    
 
     # Clean the folder before cloning
     clean_folder(target_directory)
     # Perform the folder copy operation
-    copy_selected_folders(project_directory, target_directory, selected_folders)
-
-    return {"message": "Folders copied successfully."}
+    selected_folders = [request.routers_name, request.schemas_name]  # Specify the folders to copy
+    ans = copy_selected_folders(project_directory, target_directory, selected_folders,request.project_name)
+    if ans is None:
+        return {"detail":f"Root directory '{request.project_name}' not found in '{project_directory}'.Verify root directory."}
+    return {"message": f"{ans}"}
 
 #step 3
 
@@ -200,18 +202,20 @@ def process_all(request: FileProcessingRequest):
 #step4
 
 @app.post("/process_json/")
-async def process_json(roles: List[str] = Form(...)):
+async def process_json(roles: List[str]):
+    print(roles)
     try:
+        print(roles)
         # If roles are concatenated into a single string, split them
-        if len(roles) == 1 and ',' in roles[0]:
-            roles = roles[0].split(',')
+        # if len(roles) == 1 and ',' in roles[0]:
+        #     roles = roles[0].split(',')
             
         roles_directory = "roles"
         current_working_directory = os.getcwd()
-        input_directory = os.path.join(current_working_directory, "output_f")
+        input_directory = os.path.join(current_working_directory, "Json_Output")
         print(f"Input directory: {input_directory}")
         print(f"Roles received: {roles}")  # Adjusted for clarity
-
+ 
         # Process the JSON files with the user-provided roles
         process_json_files(input_directory, roles_directory, roles)
         return {"message": "JSON files processed successfully."}

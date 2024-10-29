@@ -107,6 +107,3 @@ async def get_access_token_and_refresh_token(code: Optional[str] = None):
             return HTMLResponse(content=error_html_content, status_code=200)
 
     return HTMLResponse(content=error_html_content, status_code=200)
-
-
-# Inserted class definitions
