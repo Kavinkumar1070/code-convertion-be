@@ -1,0 +1,210 @@
+{
+    "create_user": {
+        "project": "create_user",
+        "project description": "create a new user",
+        "url": "/login",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "google_token": {
+                "description": "google token for creating user",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_user_settings": {
+        "project": "get_user_settings",
+        "project description": "Retrieve user settings",
+        "url": "/settings",
+        "method": "GET",
+        "Roles": [],
+        "payload": {}
+    },
+    "update_user_timer_settings": {
+        "project": "update_user_timer_settings",
+        "project description": "Update user timer settings",
+        "url": "/settings",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "timer_settings": {
+                "description": "timer settings for updating user timer",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_user_image_url": {
+        "project": "get_user_image_url",
+        "project description": "Get user image URL",
+        "url": "/user-image",
+        "method": "GET",
+        "Roles": [],
+        "payload": {}
+    },
+    "get_user_account": {
+        "project": "get_user_account",
+        "project description": "Retrieve user account",
+        "url": "/account",
+        "method": "GET",
+        "Roles": [],
+        "payload": {}
+    },
+    "update_user_account": {
+        "project": "update_user_account",
+        "project description": "Update user account",
+        "url": "/account",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "profile": {
+                "description": "profile for updating user account",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_user_analytics": {
+        "project": "get_user_analytics",
+        "project description": "Get user analytics",
+        "url": "/analytics",
+        "method": "GET",
+        "Roles": [],
+        "payload": {}
+    },
+    "create_user_analytics": {
+        "project": "create_user_analytics",
+        "project description": "Create user analytics",
+        "url": "/analytics",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "duration": {
+                "description": "duration for creating user analytics",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "full_date": {
+                "description": "full date for creating user analytics",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_stats": {
+        "project": "get_stats",
+        "project description": "Get statistics",
+        "url": "/statistics/{stats}",
+        "method": "GET",
+        "Roles": [],
+        "payload": {
+            "stats": {
+                "description": "stats for getting statistics",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_tasks": {
+        "project": "get_tasks",
+        "project description": "Get tasks",
+        "url": "/get-tasks",
+        "method": "GET",
+        "Roles": [],
+        "payload": {}
+    },
+    "create_new_task": {
+        "project": "create_new_task",
+        "project description": "Create a new task",
+        "url": "/create_task",
+        "method": "POST",
+        "Roles": [],
+        "payload": {
+            "google_id": {
+                "description": "google id for creating new task",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "duration": {
+                "description": "duration for creating new task",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "full_date": {
+                "description": "full date for creating new task",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_task_by_task_id": {
+        "project": "delete_task_by_task_id",
+        "project description": "Delete task by task id",
+        "url": "/tasks/{task_key}",
+        "method": "DELETE",
+        "Roles": [],
+        "payload": {
+            "task_key": {
+                "description": "task key for deleting task",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_user": {
+        "project": "delete_user",
+        "project description": "Delete user",
+        "url": "/delete",
+        "method": "DELETE",
+        "Roles": [],
+        "payload": {}
+    },
+    "cdn": {
+        "project": "cdn",
+        "project description": "Get CDN",
+        "url": "/cdn/{sound_id}",
+        "method": "GET",
+        "Roles": [],
+        "payload": {
+            "sound_id": {
+                "description": "sound id for getting CDN",
+                "datatype": "unknown",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    }
+}

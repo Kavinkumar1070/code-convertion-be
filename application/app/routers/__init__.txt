@@ -1,1 +1,0 @@
-Please provide the code from `__init__.py` that you would like me to analyze. I'll be happy to extract the details as specified in the format you provided.

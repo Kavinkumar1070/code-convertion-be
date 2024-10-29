@@ -1,0 +1,148 @@
+Here are the details of the code, formatted as requested:
+
+**Function and API Route Details:**
+
+1. **Prefix:** `/`
+**Function Name:** `create_user`
+**Roles:** `None`
+**URL/Endpoint:** `/login`
+**HTTP Method:** `POST`
+**Path Parameters:** `None`
+**Class Parameters:** `GoogleAuth`, `BackgroundTasks`
+
+2. **Prefix:** `/`
+**Function Name:** `get_user_settings`
+**Roles:** `None`
+**URL/Endpoint:** `/settings`
+**HTTP Method:** `GET`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+3. **Prefix:** `/`
+**Function Name:** `update_user_timer_settings`
+**Roles:** `None`
+**URL/Endpoint:** `/settings`
+**HTTP Method:** `PATCH`
+**Path Parameters:** `None`
+**Class Parameters:** `UserSettings`, `user`
+
+4. **Prefix:** `/`
+**Function Name:** `get_user_image_url`
+**Roles:** `None`
+**URL/Endpoint:** `/user-image`
+**HTTP Method:** `GET`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+5. **Prefix:** `/`
+**Function Name:** `get_user_account`
+**Roles:** `None`
+**URL/Endpoint:** `/account`
+**HTTP Method:** `GET`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+6. **Prefix:** `/`
+**Function Name:** `update_user_account`
+**Roles:** `None`
+**URL/Endpoint:** `/account`
+**HTTP Method:** `PATCH`
+**Path Parameters:** `None`
+**Class Parameters:** `Account`, `user`
+
+7. **Prefix:** `/`
+**Function Name:** `get_user_analytics`
+**Roles:** `None`
+**URL/Endpoint:** `/analytics`
+**HTTP Method:** `GET`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+8. **Prefix:** `/`
+**Function Name:** `create_user_analytics`
+**Roles:** `None`
+**URL/Endpoint:** `/analytics`
+**HTTP Method:** `POST`
+**Path Parameters:** `None`
+**Class Parameters:** `Analytics`, `user`
+
+9. **Prefix:** `/`
+**Function Name:** `get_stats`
+**Roles:** `None`
+**URL/Endpoint:** `/statistics/{stats}`
+**HTTP Method:** `GET`
+**Path Parameters:** `stats`
+**Class Parameters:** `user`
+
+10. **Prefix:** `/`
+**Function Name:** `get_tasks`
+**Roles:** `None`
+**URL/Endpoint:** `/get-tasks`
+**HTTP Method:** `GET`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+11. **Prefix:** `/`
+**Function Name:** `create_new_task`
+**Roles:** `None`
+**URL/Endpoint:** `/create_task`
+**HTTP Method:** `POST`
+**Path Parameters:** `None`
+**Class Parameters:** `CreateTask`, `user`
+
+12. **Prefix:** `/`
+**Function Name:** `delete_task_by_task_id`
+**Roles:** `None`
+**URL/Endpoint:** `/tasks/{task_id}`
+**HTTP Method:** `DELETE`
+**Path Parameters:** `task_id`
+**Class Parameters:** `user`
+
+13. **Prefix:** `/`
+**Function Name:** `delete_user`
+**Roles:** `None`
+**URL/Endpoint:** `/delete`
+**HTTP Method:** `DELETE`
+**Path Parameters:** `None`
+**Class Parameters:** `user`
+
+**Class Definitions:**
+
+1. **Class Name:** `GoogleAuth`
+**Fields:**
+- `google_token`: `string`, `required`, `None`
+
+2. **Class Name:** `Account`
+**Fields:**
+- `firstname`: `string`, `optional`, `None`
+- `lastname`: `string`, `optional`, `None`
+- `email`: `EmailStr`, `required`, `None`
+
+3. **Class Name:** `CreateTask`
+**Fields:**
+- `created_at`: `int`, `required`, `None`
+- `task_date`: `datetime.date`, `required`, `None`
+- `duration`: `int`, `required`, `None`
+- `google_id`: `string`, `required`, `None`
+
+4. **Class Name:** `GetAnalytics`
+**Fields:**
+- `created_at`: `datetime`, `required`, `None`
+- `duration`: `int`, `required`, `None`
+- `full_date`: `datetime`, `required`, `None`
+- `google_id`: `string`, `required`, `None`
+
+5. **Class Name:** `UserSettings`
+**Fields:**
+- `timer_settings`: `dict`, `optional`, `None`
+
+6. **Class Name:** `Analytics`
+**Fields:**
+- `created_at`: `datetime`, `required`, `None`
+- `duration`: `int`, `required`, `None`
+- `full_date`: `datetime`, `required`, `None`
+- `google_id`: `string`, `required`, `None`
+
+**Enum Definitions:**
+
+None

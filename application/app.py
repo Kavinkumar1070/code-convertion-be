@@ -60,9 +60,9 @@ class FileProcessingRequest(BaseModel):
 #step1
 @app.post("/upload-folder")
 async def upload_folder(files: list[UploadFile] = File(...)):
-    already= os.path.join(os.getcwd(), 'new_project')
+    already= os.path.join(os.getcwd(), 'Cloned_Project')
     clean_folder(already)
-    upload_directory = Path("new_project")
+    upload_directory = Path("Cloned_Project")
     upload_directory.mkdir(exist_ok=True)
 
     for file in files:
@@ -103,7 +103,7 @@ async def git_link(request: Request):
 
     print("Received request to clone repository...")
 
-    fixed_target_directory = os.path.join(os.getcwd(), 'new_project')
+    fixed_target_directory = os.path.join(os.getcwd(), 'Cloned_Project')
 
     # Clean the folder before cloning
     clean_folder(fixed_target_directory)
@@ -118,43 +118,20 @@ async def git_link(request: Request):
         raise HTTPException(status_code=500, detail=f"GitHub token is required for private repositories.")
    
 
-@app.post("/clone_or_copy/")
-def clone_code(request: CloneRequest):
-    """Endpoint to clone a GitHub repo or copy from a local directory."""
-    fixed_target_directory = os.path.join(os.getcwd(), 'new_project')
-
-    # Clean the target directory before processing
-    clean_folder(fixed_target_directory)
-
-    source_type = request.source_type.strip().lower()
-    source_path = request.source_path.strip()
-    print('**************')
-    print(source_path)
-    print('**************')
-    if source_type == 'local':
-        if not os.path.exists(source_path):
-            raise HTTPException(status_code=404, detail=f"The directory '{source_path}' does not exist.")
-        copy_project_to_directory(source_path, fixed_target_directory)
-
-    elif source_type == 'github':
-        clone_github_repo(source_path, fixed_target_directory)
-
-    else:
-        raise HTTPException(status_code=400, detail="Invalid input. Please enter 'local' or 'github'.")
-
-    return {"message": "Cloning/Copying Completed"}
-
 #step2
 
 @app.post("/copy_folders/")
 def copy_folders(request: FolderCopyRequest):
     """Endpoint to copy specified folders from a project directory."""
     # Use the current working directory as the base path
-    current_working_directory = os.getcwd()  # Get the current working directory
-    project_directory = os.path.join(current_working_directory, 'new_project')  # Set project directory to 'new_project' folder in CWD
-    target_directory = os.path.join(current_working_directory, request.project_name)  # Target directory
+    current_working_directory = os.getcwd() 
+    project_directory = os.path.join(current_working_directory, 'Cloned_Project') 
+    target_directory = os.path.join(current_working_directory, request.project_name)  
+    #need to check folder name available in project  ---***************************
     selected_folders = [request.routers_name, request.schemas_name]  # Specify the folders to copy
 
+    # Clean the folder before cloning
+    clean_folder(target_directory)
     # Perform the folder copy operation
     copy_selected_folders(project_directory, target_directory, selected_folders)
 
@@ -196,14 +173,6 @@ def process_all(request: FileProcessingRequest):
                     schema_file_path = os.path.join(f"{request.root_directory}/{request.schemas_name}/{schema_name.split('.')[-1]}.py")
                     logging.info(f"Processing schema file: {schema_file_path}")
 
-                    # Extract class code from the schema file
-                    # class_codes = extract_class_code(schema_file_path, classes)
-
-                    # # Write the extracted class code back into the router file
-                    # try:
-                    #     with open(router_file_path, 'a') as router_file:
-                    #         router_file.write("\n\n# Inserted class definitions\n")
-                    #         router_file.write(class_codes)
                     class_codes = extract_class_code(schema_file_path, classes) or ""
                     try:
                         with open(router_file_path, 'a') as router_file:
@@ -222,7 +191,7 @@ def process_all(request: FileProcessingRequest):
 
     # Step 3: Process Files
     input_folder = os.path.join(current_working_directory, request.root_directory, request.routers_name)
-    output_folder = os.path.join(current_working_directory, "output_f")
+    output_folder = os.path.join(current_working_directory, "Json_Output")
     logging.info(f"Processing files from {input_folder} to {output_folder}")
     process_files(input_folder, output_folder)
 
