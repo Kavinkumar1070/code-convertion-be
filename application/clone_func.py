@@ -112,8 +112,8 @@ def copy_selected_folders(source_directory, target_directory, selected_folders):
 
 #step 3
 
-def find_schema_imports_in_router(router_file_path, root_directory, schemas_):
-    """Find schema imports in a single router file."""
+# Function to find schema imports in a single router file
+def find_schema_imports_in_router(router_file_path,root_directory,schemas_):
     schema_imports = set()  # Use a set to avoid duplicates
 
     # Updated regex pattern to match both single-line and multiline imports
@@ -159,14 +159,18 @@ def find_schema_imports_in_router(router_file_path, root_directory, schemas_):
                         schema_imports.add((schema_name, tuple(classes)))  # Store schema filename and classes
 
     except Exception as e:
-        logging.error(f"Error reading {router_file_path}: {e}")
+        print(f"Error reading {router_file_path}: {e}")
 
     return schema_imports
 
 def extract_class_code(schema_file, classes):
     # Read the content of the schema file
-    with open(schema_file, 'r') as file:
-        file_content = file.read()
+    try:
+        with open(schema_file, 'r') as file:
+            file_content = file.read()
+    except FileNotFoundError:
+        print(f"Error: The file {schema_file} does not exist.")
+        return None 
 
     # Customize the prompt based on the filename and classes
     prompt = f"""

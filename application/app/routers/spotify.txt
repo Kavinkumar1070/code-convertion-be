@@ -1,0 +1,72 @@
+Here is the analysis of the provided code from `spotify.py` in the specified format:
+
+### Function and API Route Details:
+
+#### Function Example 1:
+* **Prefix**: `/`
+* **Function Name**: `get_access_token_and_refresh_token`
+* **Roles**: `none`
+* **URL/Endpoint**: `/`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Query or Body Parameters**: `code: str` (optional)
+* **Class Parameters**: `none`
+
+#### Function Example 2:
+* **Prefix**: `/`
+* **Function Name**: `get_user_information`
+* **Roles**: `none`
+* **URL/Endpoint**: `none`
+* **HTTP Method**: `none`
+* **Path Parameters**: `none`
+* **Query or Body Parameters**: `access_token: str`
+* **Class Parameters**: `none`
+
+#### Function Example 3:
+* **Prefix**: `/`
+* **Function Name**: `get_access_and_refresh_token`
+* **Roles**: `none`
+* **URL/Endpoint**: `none`
+* **HTTP Method**: `none`
+* **Path Parameters**: `none`
+* **Query or Body Parameters**: `code: str`
+* **Class Parameters**: `none`
+
+#### Function Example 4:
+* **Prefix**: `/`
+* **Function Name**: `check_if_email_exists`
+* **Roles**: `none`
+* **URL/Endpoint**: `none`
+* **HTTP Method**: `none`
+* **Path Parameters**: `none`
+* **Query or Body Parameters**: `email: str`
+* **Class Parameters**: `none`
+
+#### Function Example 5:
+* **Prefix**: `/`
+* **Function Name**: `create_new_user`
+* **Roles**: `none`
+* **URL/Endpoint**: `none`
+* **HTTP Method**: `none`
+* **Path Parameters**: `none`
+* **Query or Body Parameters**: `user_dict: dict`
+* **Class Parameters**: `none`
+
+### Class Definitions:
+
+#### Class Example:
+* **Class Name**: `model.user`
+    - `email`: `string`, `required`, `None`
+    - `display_name`: `string`, `optional`, `None`
+    - `access_token`: `string`, `optional`, `None`
+    - `refresh_token`: `string`, `optional`, `None`
+    - `spotify_url`: `string`, `optional`, `None`
+    - `created_at`: `datetime`, `optional`, `None`
+    
+Note that the `model.user` class is not explicitly defined in the provided code, but it's used in the functions. The fields and data types are inferred based on the usage in the code.
+
+### Enum Definitions:
+
+* **Enum Name**: `none` (no enums are defined in the provided code)
+
+Please let me know if you'd like me to clarify or add anything!

@@ -1,0 +1,168 @@
+Here is the analysis of the provided code:
+
+**Function and API Route Details:**
+
+#### Function Example 1:
+* **Prefix**: `none`
+* **Function Name**: `create_user`
+* **Roles**: `none`
+* **URL/Endpoint**: `/login`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `GoogleAuth`
+
+#### Function Example 2:
+* **Prefix**: `none`
+* **Function Name**: `get_user_settings`
+* **Roles**: `none`
+* **URL/Endpoint**: `/settings`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 3:
+* **Prefix**: `none`
+* **Function Name**: `update_user_timer_settings`
+* **Roles**: `none`
+* **URL/Endpoint**: `/settings`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `UserSettings`, `current_user`
+
+#### Function Example 4:
+* **Prefix**: `none`
+* **Function Name**: `get_user_image_url`
+* **Roles**: `none`
+* **URL/Endpoint**: `/user-image`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 5:
+* **Prefix**: `none`
+* **Function Name**: `get_user_account`
+* **Roles**: `none`
+* **URL/Endpoint**: `/account`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 6:
+* **Prefix**: `none`
+* **Function Name**: `update_user_account`
+* **Roles**: `none`
+* **URL/Endpoint**: `/account`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `Account`, `current_user`
+
+#### Function Example 7:
+* **Prefix**: `none`
+* **Function Name**: `get_user_analytics`
+* **Roles**: `none`
+* **URL/Endpoint**: `/analytics`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 8:
+* **Prefix**: `none`
+* **Function Name**: `create_user_analytics`
+* **Roles**: `none`
+* **URL/Endpoint**: `/analytics`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `Analytics`, `current_user`
+
+#### Function Example 9:
+* **Prefix**: `none`
+* **Function Name**: `get_stats`
+* **Roles**: `none`
+* **URL/Endpoint**: `/statistics/{stats}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `stats`: `str`, `required`, `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 10:
+* **Prefix**: `none`
+* **Function Name**: `get_tasks`
+* **Roles**: `none`
+* **URL/Endpoint**: `/get-tasks`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 11:
+* **Prefix**: `none`
+* **Function Name**: `create_new_task`
+* **Roles**: `none`
+* **URL/Endpoint**: `/create_task`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `CreateTask`, `current_user`
+
+#### Function Example 12:
+* **Prefix**: `none`
+* **Function Name**: `delete_task_by_task_id`
+* **Roles**: `none`
+* **URL/Endpoint**: `/tasks/{task_key}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `task_key`: `str`, `required`, `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 13:
+* **Prefix**: `none`
+* **Function Name**: `delete_user`
+* **Roles**: `none`
+* **URL/Endpoint**: `/delete`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**: `none`
+* **Class Parameters**: `current_user`
+
+#### Function Example 14:
+* **Prefix**: `none`
+* **Function Name**: `cdn`
+* **Roles**: `none`
+* **URL/Endpoint**: `/cdn/{sound_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `sound_id`: `str`, `required`, `none`
+* **Class Parameters**: `none`
+
+**Class Definitions:**
+
+#### Class Example 1:
+* **Class Name**: `GoogleAuth`
+* **Fields**:
+	+ `google_token`: `string`, `required`, `none`
+
+#### Class Example 2:
+* **Class Name**: `UserSettings`
+* **Fields**:
+	+ (fields not explicitly defined in the provided code)
+
+#### Class Example 3:
+* **Class Name**: `Account`
+* **Fields**:
+	+ (fields not explicitly defined in the provided code)
+
+#### Class Example 4:
+* **Class Name**: `Analytics`
+* **Fields**:
+	+ `duration`: `int`, `required`, `none`
+
+#### Class Example 5:
+* **Class Name**: `GetAnalytics`
+* **Fields**:
+	+ (fields not explicitly defined in the provided code)
+
+#### Class Example 6:
+* **Class Name**: `CreateTask`
+* **Fields**:
+	+ (fields not explicitly defined in the provided code)
+
+**Enum Definitions:**
+
+(None)

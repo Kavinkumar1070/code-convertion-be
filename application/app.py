@@ -193,13 +193,18 @@ def process_all(request: FileProcessingRequest):
                     logging.info(f"Found schema imports: {schema_name} - {classes}")
 
                     # Construct schema file path
-                    schema_file_path = os.path.join(request.root_directory, request.schemas_name, f"{schema_name.split('.')[-1]}.py")
+                    schema_file_path = os.path.join(f"{request.root_directory}/{request.schemas_name}/{schema_name.split('.')[-1]}.py")
                     logging.info(f"Processing schema file: {schema_file_path}")
 
                     # Extract class code from the schema file
-                    class_codes = extract_class_code(schema_file_path, classes)
+                    # class_codes = extract_class_code(schema_file_path, classes)
 
-                    # Write the extracted class code back into the router file
+                    # # Write the extracted class code back into the router file
+                    # try:
+                    #     with open(router_file_path, 'a') as router_file:
+                    #         router_file.write("\n\n# Inserted class definitions\n")
+                    #         router_file.write(class_codes)
+                    class_codes = extract_class_code(schema_file_path, classes) or ""
                     try:
                         with open(router_file_path, 'a') as router_file:
                             router_file.write("\n\n# Inserted class definitions\n")

@@ -1,0 +1,17 @@
+The code provided is a constants file that defines various constants for the application. There are no functions or API routes defined in this file. However, I can still provide an analysis of the constants defined in the file.
+
+**Constants:**
+
+* **GOOGLE_CLIENT_ID**: An environment variable for Google OAuth client ID.
+* **JWT_ACCESS_TOKEN_EXPIRE_DAYS**: An environment variable for the expiration time of JWT access tokens in days. Default value is 30 days.
+* **COOKIE_AUTHORIZATION_NAME**: An environment variable for the name of the authorization cookie. Default value is "Authorization".
+* **COOKIE_DOMAIN**: An environment variable for the domain of the authorization cookie. Default value is "https://nemo-app.netlify.app/".
+* **SPOTIFY_TOKEN_URL**: A constant URL for Spotify token API.
+* **SPOTIFY_USER_URL**: A constant URL for Spotify user API.
+* **GRANT_TYPE**: A constant for the grant type, set to "authorization_code".
+* **REDIRECT_URI**: An environment variable for the redirect URI for Spotify authorization.
+* **SPOTIFY_CLIENT_ID**: An environment variable for Spotify client ID.
+* **SPOTIFY_CLIENT_SECRET**: An environment variable for Spotify client secret.
+* **NEMO_BACKEND_URL**: A constant URL for the Nemo backend API.
+
+There are no functions, API routes, or classes defined in this file, so there is no information to capture for the specified details.
