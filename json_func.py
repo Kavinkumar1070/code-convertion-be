@@ -65,3 +65,35 @@ def process_json_files(input_directory: str, roles_directory: str, user_roles: L
     print(f"Project details saved in '{roles_directory}' folder.")
     if noroles_data:
         print(f"Projects with no matching roles saved in '{noroles_file_path}'.")
+        
+        
+#step 5
+# Dictionary to store the results
+projects_dict = {}
+
+# Loop through each file in the folder
+for filename in os.listdir(folder_path):
+    if filename.endswith('.json'):
+        file_path = os.path.join(folder_path, filename)
+        
+        # Read the JSON file
+        with open(file_path, 'r') as file:
+            try:
+                data = json.load(file)
+                
+                # Initialize a list to store project names for the current file
+                project_names = []
+                
+                # Iterate over each project in the JSON content
+                for key, value in data.items():
+                    project_name = value.get("project", "No project name found")
+                    project_names.append(project_name)
+                
+                # Store the project names list in the dictionary with the filename as the key
+                projects_dict[filename] = project_names
+            
+            except json.JSONDecodeError as e:
+                print(f"Error reading {filename}: {e}")
+
+# Print or use the resulting dictionary
+print(projects_dict)
