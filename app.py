@@ -15,7 +15,8 @@ from json_func import *
 from fastapi import FastAPI, UploadFile, File
 import os
 from pathlib import Path
-from models import router
+from models import router,upload_json_folder
+from models import create_role_function
 # Initialize FastAPI
 app = FastAPI()
 
@@ -205,20 +206,27 @@ def process_all(request: FileProcessingRequest):
 
 @app.post("/process_json/")
 async def process_json(roles: List[str]):
-    print(roles)
     try:
             
         roles_directory = "roles"
         current_working_directory = os.getcwd()
         input_directory = os.path.join(current_working_directory, "Json_Output")
-        role_folder = os.path.join(current_working_directory, roles_directory)
+        role_folder = os.path.join(current_working_directory, "roles")
 
         print(f"Input directory: {input_directory}")
         print(f"Roles received: {roles}")  # Adjusted for clarity
 
         # Process the JSON files with the user-provided roles
         clean_folder(role_folder)
-        process_json_files(input_directory, roles_directory, roles)
+        process_json_files(input_directory, roles_directory, roles) 
+        print('&&&&&&&&&')
+        upload_json_folder(role_folder)
+        print('********')
+        a = role_based_function(role_folder)
+        print('@@@@@@@@@@@@@@@@@@@@')
+        create_role_function(a)
+        print('!!!!!!!!!!!!!!!!')
+
         return {"message": "JSON files processed successfully."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -227,5 +235,7 @@ async def process_json(roles: List[str]):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+
 
 
