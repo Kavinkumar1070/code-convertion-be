@@ -1,0 +1,115 @@
+## Analysis of role.py:
+
+**1.  `create_role`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `create_role`
+* **Roles**: `admin` 
+* **URL/Endpoint**: `/admin/roles`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `RoleCreate`
+    - `name`: string, required, None
+    - `leaves`: List[int], optional, None  (This field is inferred from the code, as it is not explicitly documented.)
+
+
+**2.  `delete_role`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `delete_role`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/{role_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+    - `role_id`: integer, required, None 
+* **Class Parameters**: None
+
+
+**3.  `update_role`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `update_role`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: None
+* **Class Parameters**: `UpdateRole`
+    - `role_id`: integer, required, None
+    - `name`: string, optional, None
+    - `leaves`: List[int], optional, None (This field is inferred from the code, as it is not explicitly documented.)
+
+
+**4.  `get_roles`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `get_roles`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+
+**5.  `assign_role_to_employee`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `assign_role_to_employee`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/employee/role`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeRole`
+    - `employee_id`: integer, required, None 
+    - `role_id`: integer, required, None
+
+
+**6.  `create_new_role_function`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `create_new_role_function`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/functions`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `RoleFunctionCreate`
+    - `role_id`: integer, required, None 
+    - `function`: string, required, None
+    - `permission`: string, required, None
+
+
+**7.  `read_role_functions`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `read_role_functions`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/{role_id}/functions`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+    - `role_id`: integer, required, None
+* **Class Parameters**: None
+
+
+**8.  `update_functions`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `update_functions`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/function`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: None
+* **Class Parameters**: `UpateRoleFunction`
+    - `function_id`: integer, required, None
+    - `function`: string, required, None
+    - `permission`: string, optional, None
+
+
+**9.  `delete_existing_role_function`**
+
+* **Prefix**: `/admin/roles`
+* **Function Name**: `delete_existing_role_function`
+* **Roles**: `admin`
+* **URL/Endpoint**: `/admin/roles/functions/{id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+    - `id`: integer, required, None
+* **Class Parameters**: None

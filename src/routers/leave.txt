@@ -1,0 +1,96 @@
+## API Route Analysis for leave.py
+
+Here is the analysis of the API routes defined in `leave.py`:
+
+**1. Apply Leave**
+* **Prefix**: `/leave`
+* **Function Name**: `apply_leave`
+* **Roles**: `employee`, `admin`, `teamlead`
+* **URL/Endpoint**: `/leave/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeLeaveCreate`
+    * `leave_type`: string, required, None 
+    * `start_date`: date, required, None
+    * `end_date`: date, required, None
+    * `reason`: string, optional, None
+    * `other_entries`: string, optional, None
+
+**2. Get Leaves by Employee**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leaves_by_employee`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/leave/details`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+**3. Get Pending Leaves by Employee**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_by`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/leave/pending/leave`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+**4. Get All Pending Leaves of a Team**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_of_employee`
+* **Roles**: `teamlead`
+* **URL/Endpoint**: `/leave/pending/leave/all`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+**5. Get Leaves by Month**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_by_month`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/leave/{monthnumber}/{yearnumber}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+    * `monthnumber`: integer, required, None
+    * `yearnumber`: integer, required, None
+* **Class Parameters**: None
+
+**6. Update Leave (Admin/Teamlead)**
+* **Prefix**: `/leave`
+* **Function Name**: `update_leave`
+* **Roles**: `teamlead`, `admin`
+* **URL/Endpoint**: `/leave/admin/teamlead/update`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: None
+* **Class Parameters**: `EmployeeLeaveUpdate`
+    * `leave_id`: integer, required, None
+    * `status`: enum (`LeaveStatus`), required, [`pending`, `approved`, `rejected`]
+    * `reason`: string, optional, None
+
+**7. Delete Leave**
+* **Prefix**: `/leave`
+* **Function Name**: `delete_leave`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/leave/{leave_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+    * `leave_id`: integer, required, None
+* **Class Parameters**: None
+
+**8. Get Leave Calendar**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_calendar`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/leave/calender`
+* **HTTP Method**: `GET`
+* **Path Parameters**: None
+* **Class Parameters**: None
+
+**9. Get Leave Calendar for Teamlead**
+* **Prefix**: `/leave`
+* **Function Name**: `get_leave_calendar_tl`
+* **Roles**: `teamlead`
+* **URL/Endpoint**: `/leave/teamlead/calender/{employee_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+    * `employee_id`: string, required, None
+* **Class Parameters**: None

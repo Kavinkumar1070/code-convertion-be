@@ -1,0 +1,11 @@
+Here's the analysis of the provided code:
+
+* **Prefix**: `/general`
+* **Function Name**: `bot_response`
+* **Roles**: `none`
+* **URL/Endpoint**: `/gen/{user_input}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+    - `user_input`: string, required, None
+* **Class Parameters**: `GeneralQuestion`
+    - `question`: string, required, None

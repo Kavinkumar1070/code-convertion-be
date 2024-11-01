@@ -1,0 +1,209 @@
+{
+    "apply_leave": {
+        "project": "apply_leave",
+        "project description": "Apply for leave",
+        "url": "/leave/",
+        "method": "POST",
+        "Roles": [
+            "employee",
+            "admin",
+            "teamlead"
+        ],
+        "payload": {
+            "leave_type": {
+                "description": "Type of leave requested",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "start_date": {
+                "description": "Start date of the leave",
+                "datatype": "date",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "end_date": {
+                "description": "End date of the leave",
+                "datatype": "date",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "reason": {
+                "description": "Reason for applying leave",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "other_entries": {
+                "description": "Any other relevant information about the leave",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_leaves_by_employee": {
+        "project": "get_leaves_by_employee",
+        "project description": "Get leave details by employee",
+        "url": "/leave/details",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_by": {
+        "project": "get_leave_by",
+        "project description": "Get leave details by specific criteria",
+        "url": "/leave/pending/leave",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_of_employee": {
+        "project": "get_leave_of_employee",
+        "project description": "Get leave details of all employees",
+        "url": "/leave/pending/leave/all",
+        "method": "GET",
+        "Roles": [
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_by_month": {
+        "project": "get_leave_by_month",
+        "project description": "Get leave details by month and year",
+        "url": "/leave/{monthnumber}/{yearnumber}",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {
+            "monthnumber": {
+                "description": "Month number for leave details",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "yearnumber": {
+                "description": "Year number for leave details",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "update_leave": {
+        "project": "update_leave",
+        "project description": "Update leave status by teamlead or admin",
+        "url": "/leave/admin/teamlead/update",
+        "method": "PUT",
+        "Roles": [
+            "teamlead",
+            "admin"
+        ],
+        "payload": {
+            "leave_id": {
+                "description": "ID of the leave to update",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "status": {
+                "description": "New status of the leave",
+                "datatype": "enum",
+                "required": true,
+                "validation": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "format": [
+                    "pending",
+                    "approved",
+                    "rejected"
+                ],
+                "assigned": "None"
+            },
+            "reason": {
+                "description": "Reason for updating the leave status",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_leave": {
+        "project": "delete_leave",
+        "project description": "Delete leave by employee or teamlead",
+        "url": "/leave/{leave_id}",
+        "method": "DELETE",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {
+            "leave_id": {
+                "description": "ID of the leave to delete",
+                "datatype": "integer",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    },
+    "get_leave_calendar": {
+        "project": "get_leave_calendar",
+        "project description": "Get leave calendar for employee or teamlead",
+        "url": "/leave/calender",
+        "method": "GET",
+        "Roles": [
+            "employee",
+            "teamlead"
+        ],
+        "payload": {}
+    },
+    "get_leave_calendar_tl": {
+        "project": "get_leave_calendar_tl",
+        "project description": "Get leave calendar for a specific employee by teamlead",
+        "url": "/leave/teamlead/calender/{employee_id}",
+        "method": "GET",
+        "Roles": [
+            "teamlead"
+        ],
+        "payload": {
+            "employee_id": {
+                "description": "Employee ID for leave calendar",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            }
+        }
+    }
+}

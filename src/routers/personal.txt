@@ -1,0 +1,55 @@
+## API Route Analysis: personal.py
+
+### 1. **create_employee_route**
+
+* **Prefix**: `/personal`
+* **Function Name**: `create_employee_route`
+* **Roles**: `none` 
+* **URL/Endpoint**: `/personal/employees`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `EmployeeCreate`
+    * `firstname`: string, required, None
+    * `lastname`: string, required, None
+    * `dateofbirth`: string, required, None (validation: YYYY-MM-DD format)
+    * `contactnumber`: integer, optional, None 
+    * `emailaddress`: string, required, None
+    * `address`: string, optional, None
+    * `nationality`: string, required, None
+    * `gender`: string, required, None
+    * `maritalstatus`: string, optional, None
+    * `password`: string, required, None
+    * `employment_id`: string, required, None
+
+
+### 2. **read_employee_route**
+
+* **Prefix**: `/personal`
+* **Function Name**: `read_employee_route`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/personal/employees`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `none`
+
+
+### 3. **update_employee_data**
+
+* **Prefix**: `/personal`
+* **Function Name**: `update_employee_data`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/personal/employees`
+* **HTTP Method**: `PUT`
+* **Path Parameters**: `none`
+* **Class Parameters**: `EmployeeUpdate`
+    * `firstname`: string, optional, None
+    * `lastname`: string, optional, None
+    * `dateofbirth`: string, optional, None (validation: YYYY-MM-DD format)
+    * `contactnumber`: integer, optional, None
+    * `emailaddress`: string, optional, None
+    * `address`: string, optional, None
+    * `nationality`: string, optional, None
+    * `gender`: string, optional, None
+    * `maritalstatus`: string, optional, None
+    * `password`: string, optional, None
+    * `employment_id`: string, optional, None

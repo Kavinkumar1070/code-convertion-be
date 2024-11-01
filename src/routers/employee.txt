@@ -1,0 +1,31 @@
+## API Endpoint Analysis for employee.py
+
+Here's an analysis of the provided code from `employee.py`:
+
+**1. `read_employee` Function**
+
+* **Prefix**: `/employee`
+* **Function Name**: `read_employee`
+* **Roles**: `employee`, `teamlead`
+* **URL/Endpoint**: `/employee/employees/reademployee`
+* **HTTP Method**: `GET`
+* **Path Parameters**: 
+    * None
+* **Class Parameters**: 
+    * None  
+
+**Explanation:**
+
+This function retrieves an employee's employment details. 
+
+- The `@router.get` decorator defines the route `/employees/reademployee` under the `/employee` prefix. 
+- `dependencies=[Depends(roles_required("employee", "teamlead"))]` enforces role-based access, requiring either 'employee' or 'teamlead' roles to access this endpoint.
+- It fetches the details of the currently logged-in employee using `current_employee=Depends(get_current_employee)`.
+- It determines the appropriate data based on the user's role (employee or teamlead).
+- If no matching employee is found, it raises a `HTTPException` with a 404 status code.
+- Finally, it prepares a dictionary containing employee details and returns it.
+
+
+**Overall Summary:**
+
+The `employee.py` file defines an API endpoint for retrieving employee information. The `read_employee` function handles the retrieval process, ensuring role-based access and returning a formatted response with employee details.

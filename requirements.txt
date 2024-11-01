@@ -3,3 +3,6 @@ uvicorn
 GitPython
 groq
 python-multipart
+sqlalchemy
+google-generativeai
+
