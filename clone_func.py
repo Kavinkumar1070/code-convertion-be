@@ -11,11 +11,12 @@ from groq import Groq
 
 #step1
 
-def clone_github_repo(repo_url, clone_dir):
-    """Clone the GitHub repository to the local directory."""
+    
+def clone_github_repo(repo_url, clone_dir, branch):
+    """Clone the GitHub repository to the local directory, specifying the branch."""
     try:
-        git.Repo.clone_from(repo_url, clone_dir)
-        logging.info(f"Cloned GitHub repo: '{repo_url}' into '{clone_dir}'")
+        git.Repo.clone_from(repo_url, clone_dir, branch=branch)
+        logging.info(f"Cloned GitHub repo: '{repo_url}' branch '{branch}' into '{clone_dir}'")
     except Exception as e:
         logging.error(f"Error cloning repository: {e}")
         raise HTTPException(status_code=500, detail=f"Error cloning repository: {e}")

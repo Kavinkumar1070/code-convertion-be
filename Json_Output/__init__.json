@@ -1,1 +1,120 @@
-{}
+{
+    "create_user": {
+        "project": "create_user",
+        "project description": "Create a new user with provided username, email, password, and role",
+        "url": "/user",
+        "method": "POST",
+        "Roles": [
+            "admin"
+        ],
+        "payload": {
+            "username": {
+                "description": "Username of the user to be created",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "email": {
+                "description": "Email address of the user to be created",
+                "datatype": "string",
+                "required": true,
+                "validation": "valid email format",
+                "format": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                "assigned": "None"
+            },
+            "password": {
+                "description": "Password of the user to be created",
+                "datatype": "string",
+                "required": true,
+                "validation": "at least 8 characters long",
+                "format": "^.{8,}$",
+                "assigned": "None"
+            },
+            "role": {
+                "description": "Role of the user to be created",
+                "datatype": "enum",
+                "required": true,
+                "validation": [
+                    "admin",
+                    "employee"
+                ],
+                "format": [
+                    "admin",
+                    "employee"
+                ],
+                "assigned": "None"
+            }
+        }
+    },
+    "get_user_by_id": {
+        "project": "get_user_by_id",
+        "project description": "Retrieve user details based on the provided user_id",
+        "url": "/user/{user_id}",
+        "method": "GET",
+        "Roles": [
+            "admin"
+        ],
+        "payload": {}
+    },
+    "update_user": {
+        "project": "update_user",
+        "project description": "Update user details based on the provided user_id",
+        "url": "/user/{user_id}",
+        "method": "PUT",
+        "Roles": [
+            "admin"
+        ],
+        "payload": {
+            "username": {
+                "description": "New username for the user",
+                "datatype": "string",
+                "required": false,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "email": {
+                "description": "New email address for the user",
+                "datatype": "string",
+                "required": false,
+                "validation": "valid email format",
+                "format": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                "assigned": "None"
+            },
+            "password": {
+                "description": "New password for the user",
+                "datatype": "string",
+                "required": false,
+                "validation": "at least 8 characters long",
+                "format": "^.{8,}$",
+                "assigned": "None"
+            },
+            "role": {
+                "description": "New role for the user",
+                "datatype": "enum",
+                "required": false,
+                "validation": [
+                    "admin",
+                    "employee"
+                ],
+                "format": [
+                    "admin",
+                    "employee"
+                ],
+                "assigned": "None"
+            }
+        }
+    },
+    "delete_user": {
+        "project": "delete_user",
+        "project description": "Delete user details based on the provided user_id",
+        "url": "/user/{user_id}",
+        "method": "DELETE",
+        "Roles": [
+            "admin"
+        ],
+        "payload": {}
+    }
+}

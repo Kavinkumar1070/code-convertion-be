@@ -1,31 +1,30 @@
-## API Endpoint Analysis for employee.py
+## API Endpoint Analysis:
 
-Here's an analysis of the provided code from `employee.py`:
+Here's the analysis of the provided code from `employee.py`:
 
-**1. `read_employee` Function**
+**1.  `/employee/employees/reademployee` Endpoint**
 
 * **Prefix**: `/employee`
 * **Function Name**: `read_employee`
 * **Roles**: `employee`, `teamlead`
-* **URL/Endpoint**: `/employee/employees/reademployee`
+* **URL/Endpoint**: `/employees/reademployee`
 * **HTTP Method**: `GET`
-* **Path Parameters**: 
-    * None
-* **Class Parameters**: 
-    * None  
+* **Path Parameters**: `None`
+* **Class Parameters**: `None` 
 
 **Explanation:**
 
-This function retrieves an employee's employment details. 
+This endpoint retrieves employee details based on the currently logged-in employee.  Here's a breakdown:
 
-- The `@router.get` decorator defines the route `/employees/reademployee` under the `/employee` prefix. 
-- `dependencies=[Depends(roles_required("employee", "teamlead"))]` enforces role-based access, requiring either 'employee' or 'teamlead' roles to access this endpoint.
-- It fetches the details of the currently logged-in employee using `current_employee=Depends(get_current_employee)`.
-- It determines the appropriate data based on the user's role (employee or teamlead).
-- If no matching employee is found, it raises a `HTTPException` with a 404 status code.
-- Finally, it prepares a dictionary containing employee details and returns it.
+* **Authorization:** Access is restricted to employees and team leads through the `roles_required` decorator. 
+* **Functionality:**
+    * The `read_employee` function first obtains the current employee's ID and role from the `get_current_employee` and `get_current_employee_roles` dependencies.
+    * It then fetches the employee details using the `get_all_employee_employment_details` function from the `crud.employee` module.
+    * The function handles both scenarios:
+        * If the current employee is an `employee`, it retrieves details for their own ID.
+        * If the current employee is a `teamlead`, it retrieves details for their own ID.
+    * If no employee is found, a 404 error is raised.
+    * The response is a dictionary containing various employee details like `employee_email`, `job_position`, `department`, etc.
 
 
-**Overall Summary:**
-
-The `employee.py` file defines an API endpoint for retrieving employee information. The `read_employee` function handles the retrieval process, ensuring role-based access and returning a formatted response with employee details.
+Let me know if you'd like me to analyze any other functions within the `employee.py` file!

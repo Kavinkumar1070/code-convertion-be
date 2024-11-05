@@ -1,12 +1,12 @@
 {
     "read_employee_route": {
         "project": "read_employee_route",
-        "project description": "Read employee details by employee ID",
+        "project description": "Read employee details by employee id",
         "url": "/admin/personal/{employee_id}",
         "method": "GET",
         "payload": {
             "employee_id": {
-                "description": "Employee ID to get employee details",
+                "description": "Employee ID to read the employee details",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -17,22 +17,14 @@
     },
     "update_employee_data": {
         "project": "update_employee_data",
-        "project description": "Update employee details by employee ID",
+        "project description": "Update employee details by employee id",
         "url": "/admin/employees/{employee_id}",
         "method": "PUT",
         "payload": {
-            "employee_id": {
-                "description": "Employee ID to update employee details",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
             "firstname": {
                 "description": "First name of the employee",
                 "datatype": "string",
-                "required": false,
+                "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -40,7 +32,7 @@
             "lastname": {
                 "description": "Last name of the employee",
                 "datatype": "string",
-                "required": false,
+                "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -48,7 +40,7 @@
             "dateofbirth": {
                 "description": "Date of birth of the employee",
                 "datatype": "string",
-                "required": false,
+                "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -80,7 +72,7 @@
             "nationality": {
                 "description": "Nationality of the employee",
                 "datatype": "string",
-                "required": false,
+                "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -88,7 +80,7 @@
             "gender": {
                 "description": "Gender of the employee",
                 "datatype": "string",
-                "required": false,
+                "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -105,28 +97,27 @@
     },
     "delete_employee_route": {
         "project": "delete_employee_route",
-        "project description": "Delete employee by employee ID",
+        "project description": "Delete employee by employee id",
         "url": "/admin/employees/{employee_id}",
         "method": "DELETE",
+        "payload": {}
+    },
+    "create_employee": {
+        "project": "create_employee",
+        "project description": "Create a new employee record",
+        "url": "/admin/employees/",
+        "method": "POST",
         "payload": {
-            "employee_id": {
-                "description": "Employee ID to delete",
+            "employee_email": {
+                "description": "Email address of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
-            }
-        }
-    },
-    "create_employee": {
-        "project": "create_employee",
-        "project description": "Create new employee",
-        "url": "/admin/employees/",
-        "method": "POST",
-        "payload": {
+            },
             "job_position": {
-                "description": "Job position of the new employee",
+                "description": "Job position of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -134,23 +125,7 @@
                 "assigned": "None"
             },
             "department": {
-                "description": "Department of the new employee",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "email": {
-                "description": "Email address of the new employee",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "password": {
-                "description": "Password for the new employee",
+                "description": "Department of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -158,15 +133,15 @@
                 "assigned": "None"
             },
             "start_date": {
-                "description": "Start date of the new employee",
-                "datatype": "date",
+                "description": "Start date of the employee",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
             "employment_type": {
-                "description": "Employment type of the new employee",
+                "description": "Employment type of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -174,7 +149,7 @@
                 "assigned": "None"
             },
             "reporting_manager": {
-                "description": "Reporting manager of the new employee",
+                "description": "Reporting manager of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -182,7 +157,7 @@
                 "assigned": "None"
             },
             "work_location": {
-                "description": "Work location of the new employee",
+                "description": "Work location of the employee",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -190,8 +165,16 @@
                 "assigned": "None"
             },
             "basic_salary": {
-                "description": "Basic salary of the new employee",
+                "description": "Basic salary of the employee",
                 "datatype": "float",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "password": {
+                "description": "Password for the employee",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -201,30 +184,21 @@
     },
     "read_employee": {
         "project": "read_employee",
-        "project description": "Read employee details by employee ID",
+        "project description": "Read employee details by employee id",
         "url": "/admin/employees/{employee_id}",
         "method": "GET",
-        "payload": {
-            "employee_id": {
-                "description": "Employee ID to get employee details",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            }
-        }
+        "payload": {}
     },
     "update_employee_admin": {
         "project": "update_employee_admin",
-        "project description": "Update employee details by employee ID",
+        "project description": "Update employee details by admin",
         "url": "/admin/employees/update/admin",
         "method": "PUT",
         "payload": {
-            "employment_id": {
-                "description": "Employee ID to update employee details",
+            "employee_email": {
+                "description": "Email address of the employee",
                 "datatype": "string",
-                "required": true,
+                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -245,17 +219,9 @@
                 "format": "None",
                 "assigned": "None"
             },
-            "email": {
-                "description": "Email address of the employee",
-                "datatype": "string",
-                "required": false,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
             "start_date": {
                 "description": "Start date of the employee",
-                "datatype": "date",
+                "datatype": "string",
                 "required": false,
                 "validation": "None",
                 "format": "None",
@@ -294,7 +260,7 @@
                 "assigned": "None"
             },
             "is_active": {
-                "description": "Whether the employee is active",
+                "description": "Active status of the employee",
                 "datatype": "boolean",
                 "required": false,
                 "validation": "None",
@@ -303,7 +269,7 @@
             },
             "releave_date": {
                 "description": "Releave date of the employee",
-                "datatype": "date",
+                "datatype": "string",
                 "required": false,
                 "validation": "None",
                 "format": "None",
@@ -313,44 +279,26 @@
     },
     "delete_employee_details": {
         "project": "delete_employee_details",
-        "project description": "Delete employee details by employee ID",
+        "project description": "Delete employee details by employee id",
         "url": "/admin/employees/{employee_id}",
         "method": "DELETE",
-        "payload": {
-            "employee_id": {
-                "description": "Employee ID to delete employee details",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            }
-        }
+        "payload": {}
     },
     "get_leave_by": {
         "project": "get_leave_by",
-        "project description": "Get pending leave by employee ID",
+        "project description": "Get pending leave by employee id",
         "url": "/admin/pending/leave/{employee_id}",
         "method": "GET",
-        "payload": {
-            "employee_id": {
-                "description": "Employee ID to get pending leave details",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            }
-        }
+        "payload": {}
     },
     "get_leave_by_month": {
         "project": "get_leave_by_month",
-        "project description": "Get leave details by month, year, and employee ID",
+        "project description": "Get leave details for the specified month and year by employee id",
         "url": "/admin/{monthnumber}/{yearnumber}/{employee_id}",
         "method": "GET",
         "payload": {
             "monthnumber": {
-                "description": "Month number to get leave details",
+                "description": "Month number for leave retrieval",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -358,7 +306,7 @@
                 "assigned": "None"
             },
             "yearnumber": {
-                "description": "Year number to get leave details",
+                "description": "Year number for leave retrieval",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -377,28 +325,19 @@
     },
     "get_leaves_by_employee": {
         "project": "get_leaves_by_employee",
-        "project description": "Get all leaves for an employee by employee ID",
+        "project description": "Get all leaves by employee id",
         "url": "/admin/leaves/{employee_id}",
         "method": "GET",
-        "payload": {
-            "employee_id": {
-                "description": "Employee ID to get leave details",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            }
-        }
+        "payload": {}
     },
     "delete_leave": {
         "project": "delete_leave",
-        "project description": "Delete a leave by leave ID",
+        "project description": "Delete leave by leave id",
         "url": "/admin/{leave_id}",
         "method": "DELETE",
         "payload": {
             "leave_id": {
-                "description": "Leave ID to delete",
+                "description": "Leave ID to delete the leave record",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -409,12 +348,12 @@
     },
     "update_leave": {
         "project": "update_leave",
-        "project description": "Update leave status by teamlead or admin",
+        "project description": "Update leave status",
         "url": "/leave/admin/teamlead/update",
         "method": "PUT",
         "payload": {
             "leave_id": {
-                "description": "ID of the leave to update",
+                "description": "Leave ID to update",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -422,7 +361,7 @@
                 "assigned": "None"
             },
             "status": {
-                "description": "New status of the leave",
+                "description": "Leave status to update",
                 "datatype": "enum",
                 "required": true,
                 "validation": [
@@ -438,7 +377,7 @@
                 "assigned": "None"
             },
             "reason": {
-                "description": "Reason for updating the leave status",
+                "description": "Reason for leave update",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
@@ -456,12 +395,12 @@
     },
     "get_leave_calendar": {
         "project": "get_leave_calendar",
-        "project description": "Get leave calendar by employee ID",
+        "project description": "Get leave calendar by employee id",
         "url": "/admin/calender/{employee_id}",
         "method": "GET",
         "payload": {
             "employee_id": {
-                "description": "Employee ID to get leave calendar details",
+                "description": "Employee ID to get leave calendar",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
@@ -476,40 +415,40 @@
         "url": "/leave/",
         "method": "POST",
         "payload": {
-            "leave_type": {
-                "description": "Type of leave requested",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
             "start_date": {
-                "description": "Start date of the leave",
-                "datatype": "date",
+                "description": "Start date for leave",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
             "end_date": {
-                "description": "End date of the leave",
-                "datatype": "date",
+                "description": "End date for leave",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "leave_type": {
+                "description": "Type of leave",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
             "reason": {
-                "description": "Reason for applying leave",
+                "description": "Reason for leave",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "other_entries": {
-                "description": "Any other relevant information about the leave",
+            "other_entires": {
+                "description": "Other entries for leave",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
@@ -520,22 +459,14 @@
     },
     "create_role": {
         "project": "create_role",
-        "project description": "Create new role",
+        "project description": "Create a new role for admin",
         "url": "/admin/roles",
         "method": "POST",
         "payload": {
             "name": {
-                "description": "Name of the new role",
+                "description": "Name of the role to create",
                 "datatype": "string",
                 "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "leaves": {
-                "description": "List of leaves available for this role",
-                "datatype": "List[int]",
-                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -544,19 +475,19 @@
     },
     "delete_role": {
         "project": "delete_role",
-        "project description": "Delete role",
+        "project description": "Delete a role by role id",
         "url": "/admin/roles/{role_id}",
         "method": "DELETE",
         "payload": {}
     },
     "update_role": {
         "project": "update_role",
-        "project description": "Update an existing role",
+        "project description": "Update a role by role id",
         "url": "/admin/roles",
         "method": "PUT",
         "payload": {
             "role_id": {
-                "description": "Role ID to update",
+                "description": "Role ID of the role to update",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -570,27 +501,19 @@
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
-            },
-            "leaves": {
-                "description": "Updated list of leaves available for this role",
-                "datatype": "List[int]",
-                "required": false,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
             }
         }
     },
     "get_roles": {
         "project": "get_roles",
-        "project description": "Retrieve the list of all roles",
+        "project description": "Get all roles",
         "url": "/admin/roles",
         "method": "GET",
         "payload": {}
     },
     "assign_role_to_employee": {
         "project": "assign_role_to_employee",
-        "project description": "Assign role to employee",
+        "project description": "Assign a role to an employee",
         "url": "/admin/roles/employee/role",
         "method": "POST",
         "payload": {
@@ -603,7 +526,7 @@
                 "assigned": "None"
             },
             "role_id": {
-                "description": "Role ID to be assigned to the employee",
+                "description": "Role ID to assign to employee",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -619,16 +542,16 @@
         "method": "POST",
         "payload": {
             "role_id": {
-                "description": "Role ID to add function to",
+                "description": "Role ID to assign function to",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "function": {
-                "description": "Name of the new function",
-                "datatype": "string",
+            "function_id": {
+                "description": "Function ID to assign to role",
+                "datatype": "integer",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -637,7 +560,7 @@
             "permission": {
                 "description": "Permission level for the function",
                 "datatype": "string",
-                "required": true,
+                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -646,47 +569,121 @@
     },
     "read_role_functions": {
         "project": "read_role_functions",
-        "project description": "Retrieve the functions associated with a role",
+        "project description": "Get all functions assigned to a role by role id",
         "url": "/admin/roles/{role_id}/functions",
         "method": "GET",
         "payload": {}
     },
-    "update_functions": {
-        "project": "update_functions",
-        "project description": "Update an existing function",
-        "url": "/admin/roles/function",
-        "method": "PUT",
+    "delete_existing_role_function": {
+        "project": "delete_existing_role_function",
+        "project description": "Delete existing function of role by function id",
+        "url": "/admin/roles/functions/{id}",
+        "method": "DELETE",
+        "payload": {}
+    },
+    "create_user": {
+        "project": "create_user",
+        "project description": "Create a new user with provided username, email, password, and role",
+        "url": "/user",
+        "method": "POST",
         "payload": {
-            "function_id": {
-                "description": "Function ID to update",
-                "datatype": "integer",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "function": {
-                "description": "New name of the function",
+            "username": {
+                "description": "Username of the user to be created",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "permission": {
-                "description": "Updated permission level for the function",
+            "email": {
+                "description": "Email address of the user to be created",
+                "datatype": "string",
+                "required": true,
+                "validation": "valid email format",
+                "format": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                "assigned": "None"
+            },
+            "password": {
+                "description": "Password of the user to be created",
+                "datatype": "string",
+                "required": true,
+                "validation": "at least 8 characters long",
+                "format": "^.{8,}$",
+                "assigned": "None"
+            },
+            "role": {
+                "description": "Role of the user to be created",
+                "datatype": "enum",
+                "required": true,
+                "validation": [
+                    "admin",
+                    "employee"
+                ],
+                "format": [
+                    "admin",
+                    "employee"
+                ],
+                "assigned": "None"
+            }
+        }
+    },
+    "get_user_by_id": {
+        "project": "get_user_by_id",
+        "project description": "Retrieve user details based on the provided user_id",
+        "url": "/user/{user_id}",
+        "method": "GET",
+        "payload": {}
+    },
+    "update_user": {
+        "project": "update_user",
+        "project description": "Update user details based on the provided user_id",
+        "url": "/user/{user_id}",
+        "method": "PUT",
+        "payload": {
+            "username": {
+                "description": "New username for the user",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
+            },
+            "email": {
+                "description": "New email address for the user",
+                "datatype": "string",
+                "required": false,
+                "validation": "valid email format",
+                "format": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                "assigned": "None"
+            },
+            "password": {
+                "description": "New password for the user",
+                "datatype": "string",
+                "required": false,
+                "validation": "at least 8 characters long",
+                "format": "^.{8,}$",
+                "assigned": "None"
+            },
+            "role": {
+                "description": "New role for the user",
+                "datatype": "enum",
+                "required": false,
+                "validation": [
+                    "admin",
+                    "employee"
+                ],
+                "format": [
+                    "admin",
+                    "employee"
+                ],
+                "assigned": "None"
             }
         }
     },
-    "delete_existing_role_function": {
-        "project": "delete_existing_role_function",
-        "project description": "Delete a function from a role",
-        "url": "/admin/roles/functions/{id}",
+    "delete_user": {
+        "project": "delete_user",
+        "project description": "Delete user details based on the provided user_id",
+        "url": "/user/{user_id}",
         "method": "DELETE",
         "payload": {}
     }

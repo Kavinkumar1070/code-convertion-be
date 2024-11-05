@@ -1,14 +1,13 @@
-from datetime import date
-from typing import Optional
-
+from pydantic import BaseModel, validator, ValidationError, Field, EmailStr
 from dateutil import parser
-from pydantic import BaseModel, EmailStr, Field, ValidationError, validator
+from typing import Optional
+from datetime import date
 
 
 class EmployeeBase(BaseModel):
     firstname: str
     lastname: str
-    dateofbirth: str
+    dateofbirth: str 
     contactnumber: int
     emailaddress: EmailStr
     address: str
@@ -25,18 +24,14 @@ class EmployeeBase(BaseModel):
             )
         return value
 
-    @validator("dateofbirth", pre=True)
+    @validator('dateofbirth', pre=True)
     def parse_date(cls, value):
         try:
             # Parse the date from various formats
             parsed_date = parser.parse(value)
-            return parsed_date.strftime(
-                "%Y-%m-%d"
-            )  # Convert to standard format YYYY-MM-DD
+            return parsed_date.strftime('%Y-%m-%d')  # Convert to standard format YYYY-MM-DD
         except (ValueError, TypeError):
-            raise ValueError(
-                "Invalid date format. Please use a valid date string.")
-
+            raise ValueError("Invalid date format. Please use a valid date string.")
 
 class EmployeeCreate(EmployeeBase):
     pass
@@ -46,23 +41,25 @@ class EmployeeUpdate(BaseModel):
     firstname: Optional[str] = None
     lastname: Optional[str] = None
     dateofbirth: Optional[str] = Field(None, example="1990-05-15")
-    contactnumber: Optional[str] = None
+    contactnumber: Optional[int] = None
     emailaddress: Optional[EmailStr] = None
     address: Optional[str] = None
     nationality: Optional[str] = None
     gender: Optional[str] = None
     maritalstatus: Optional[str] = None
 
-    @validator("dateofbirth", pre=True)
+    @validator("contactnumber", check_fields=False)
+    def validate_phone_number(cls, value):
+        if value is None:
+            return value  # Skip validation if the value is None
+    @validator('dateofbirth', pre=True)
     def parse_date(cls, value):
         if value is not None:
             try:
                 # Parse the date from various formats
                 parsed_date = parser.parse(value)
-                return parsed_date.strftime(
-                    "%Y-%m-%d"
-                )  # Convert to standard format YYYY-MM-DD
+                return parsed_date.strftime('%Y-%m-%d')  # Convert to standard format YYYY-MM-DD
             except (ValueError, TypeError):
-                raise ValueError(
-                    "Invalid date format. Please use a valid date string.")
+                raise ValueError("Invalid date format. Please use a valid date string.")
         return value
+

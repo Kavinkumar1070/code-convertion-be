@@ -33,28 +33,13 @@ app.add_middleware(
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
-class CloneRequest(BaseModel):
-    source_type: str
-    source_path: str
 
 class FolderCopyRequest(BaseModel):
-    project_name: str
-    routers_name: str
-    schemas_name: str
-    
-class ProcessRequest(BaseModel):
+    language: str
     root_directory: str
     routers_name: str
     schemas_name: str
 
-class FolderRequest(BaseModel):
-    root_directory: str
-    routers_name: str
-    
-class FileProcessingRequest(BaseModel):
-    root_directory: str
-    routers_name: str
-    schemas_name: str
 
 
     
@@ -83,6 +68,7 @@ async def git_link(request: Request):
     data = await request.json()  # Extract the request body
     source_path = data.get('source_path')
     token = data.get('token', None)
+    branch = data.get('branch',"main")
 
     if not source_path:
         raise HTTPException(status_code=400, detail="Source path is required.")
@@ -111,49 +97,44 @@ async def git_link(request: Request):
 
     try:
         print(f"Cloning from: {auth_repo_url}")
-        clone_github_repo(auth_repo_url, fixed_target_directory)
+        clone_github_repo(auth_repo_url, fixed_target_directory,branch)
         print("Clone completed successfully.")
         return {"message": f"Repository cloned successfully from {source_path}"}
     except Exception as e:
         print("Error while cloning the repository:", e)
         raise HTTPException(status_code=500, detail=f"GitHub token is required for private repositories.")
-   
-
-#step2
-
-@app.post("/copy_folders/")
-def copy_folders(request: FolderCopyRequest):
-    """Endpoint to copy specified folders from a project directory."""
-    # Use the current working directory as the base path
-    current_working_directory = os.getcwd() 
-    project_directory = os.path.join(current_working_directory, 'Cloned_Project') 
-    target_directory = os.path.join(current_working_directory, request.project_name)  
-    #need to check folder name available in project  ---***************************
     
 
-    # Clean the folder before cloning
-    clean_folder(target_directory)
-    # Perform the folder copy operation
-    selected_folders = [request.routers_name, request.schemas_name]  # Specify the folders to copy
-    ans = copy_selected_folders(project_directory, target_directory, selected_folders,request.project_name)
-    if ans is None:
-        return {"detail":f"Root directory '{request.project_name}' not found in '{project_directory}'.Verify root directory."}
-    return {"message": f"{ans}"}
-
-#step 3
-
-@app.post("/process/")
-def process_all(request: FileProcessingRequest):
+#step2
+@app.post("/copy_and_process/")
+def copy_and_process(request: FolderCopyRequest):
     """
-    Endpoint to process routers, code, and files.
+    Endpoint to copy specified folders from a project directory and process routers, code, and files.
     This endpoint handles the following:
-    - Process router files to extract schema imports and insert class definitions
-    - Process code in a specified folder
-    - Process files from input to output folder
+    - Copies specified folders from a project directory to a target location.
+    - Processes router files to extract schema imports and insert class definitions.
+    - Processes code in a specified folder.
+    - Processes files from an input to an output folder.
     """
+    # Step 1: Set up directories
     current_working_directory = os.getcwd()
+    project_directory = os.path.join(current_working_directory, 'Cloned_Project')
+    target_directory = os.path.join(current_working_directory, request.root_directory)
 
-    # Step 1: Process Routers
+    # Step 2: Check folder name availability in the project directory
+    if not os.path.exists(project_directory):
+        raise HTTPException(status_code=404, detail=f"Project directory '{project_directory}' not found.")
+    
+    # Clean the target directory before cloning
+    clean_folder(target_directory)
+
+    # Step 3: Copy selected folders
+    selected_folders = [request.routers_name, request.schemas_name]
+    ans = copy_selected_folders(project_directory, target_directory, selected_folders, request.root_directory)
+    if ans is None:
+        return {"detail": f"Root directory '{request.root_directory}' not found in '{project_directory}'. Verify root directory."}
+
+    # Step 4: Process Routers
     routers_directory = os.path.join(current_working_directory, request.root_directory, request.routers_name)
     logging.info(f"Routers directory: {routers_directory}")
 
@@ -187,23 +168,23 @@ def process_all(request: FileProcessingRequest):
                         logging.error(f"Error writing to {router_file_path}: {e}")
                         raise HTTPException(status_code=500, detail=f"Error writing to {router_file_path}: {e}")
 
-    # Step 2: Process Code
+    # Step 5: Process Code
     folder_path = os.path.join(current_working_directory, request.root_directory, request.routers_name)
     logging.info(f"Processing code folder: {folder_path}")
     clean_text_files(folder_path)
     process_code_folder(folder_path)
 
-    # Step 3: Process Files
+    # Step 6: Process Files
     input_folder = os.path.join(current_working_directory, request.root_directory, request.routers_name)
     output_folder = os.path.join(current_working_directory, "Json_Output")
     logging.info(f"Processing files from {input_folder} to {output_folder}")
     clean_folder(output_folder)
     process_files(input_folder, output_folder)
 
-    return {"message": "Processing of routers, code, and files completed successfully."}
+    return {"message": "Copying and processing of routers, code, and files completed successfully."}
 
-#step4
 
+#step3
 @app.post("/process_json/")
 async def process_json(roles: List[str]):
     try:
@@ -219,13 +200,9 @@ async def process_json(roles: List[str]):
         # Process the JSON files with the user-provided roles
         clean_folder(role_folder)
         process_json_files(input_directory, roles_directory, roles) 
-        print('&&&&&&&&&')
         upload_json_folder(role_folder)
-        print('********')
         a = role_based_function(role_folder)
-        print('@@@@@@@@@@@@@@@@@@@@')
         create_role_function(a)
-        print('!!!!!!!!!!!!!!!!')
 
         return {"message": "JSON files processed successfully."}
     except Exception as e:

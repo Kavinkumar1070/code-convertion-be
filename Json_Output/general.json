@@ -1,14 +1,16 @@
 {
     "bot_response": {
         "project": "bot_response",
-        "project description": "This endpoint is used to get a bot response based on user input.",
+        "project description": "Provides a general bot response based on the user input",
         "url": "/general/gen/{user_input}",
         "method": "GET",
-        "Roles": [],
+        "Roles": [
+            "none"
+        ],
         "payload": {
             "user_input": {
-                "description": "User input for the bot to process.",
-                "datatype": "string",
+                "description": "The user input to be processed by the bot",
+                "datatype": "str",
                 "required": true,
                 "validation": "None",
                 "format": "None",

@@ -1,7 +1,7 @@
 {
     "create_role": {
         "project": "create_role",
-        "project description": "Create new role",
+        "project description": "Create a new role for admin",
         "url": "/admin/roles",
         "method": "POST",
         "Roles": [
@@ -9,17 +9,9 @@
         ],
         "payload": {
             "name": {
-                "description": "Name of the new role",
+                "description": "Name of the role to create",
                 "datatype": "string",
                 "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "leaves": {
-                "description": "List of leaves available for this role",
-                "datatype": "List[int]",
-                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -28,7 +20,7 @@
     },
     "delete_role": {
         "project": "delete_role",
-        "project description": "Delete role",
+        "project description": "Delete a role by role id",
         "url": "/admin/roles/{role_id}",
         "method": "DELETE",
         "Roles": [
@@ -38,7 +30,7 @@
     },
     "update_role": {
         "project": "update_role",
-        "project description": "Update an existing role",
+        "project description": "Update a role by role id",
         "url": "/admin/roles",
         "method": "PUT",
         "Roles": [
@@ -46,7 +38,7 @@
         ],
         "payload": {
             "role_id": {
-                "description": "Role ID to update",
+                "description": "Role ID of the role to update",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -60,20 +52,12 @@
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
-            },
-            "leaves": {
-                "description": "Updated list of leaves available for this role",
-                "datatype": "List[int]",
-                "required": false,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
             }
         }
     },
     "get_roles": {
         "project": "get_roles",
-        "project description": "Retrieve the list of all roles",
+        "project description": "Get all roles",
         "url": "/admin/roles",
         "method": "GET",
         "Roles": [
@@ -83,7 +67,7 @@
     },
     "assign_role_to_employee": {
         "project": "assign_role_to_employee",
-        "project description": "Assign role to employee",
+        "project description": "Assign a role to an employee",
         "url": "/admin/roles/employee/role",
         "method": "POST",
         "Roles": [
@@ -99,7 +83,7 @@
                 "assigned": "None"
             },
             "role_id": {
-                "description": "Role ID to be assigned to the employee",
+                "description": "Role ID to assign to employee",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -118,16 +102,16 @@
         ],
         "payload": {
             "role_id": {
-                "description": "Role ID to add function to",
+                "description": "Role ID to assign function to",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "function": {
-                "description": "Name of the new function",
-                "datatype": "string",
+            "function_id": {
+                "description": "Function ID to assign to role",
+                "datatype": "integer",
                 "required": true,
                 "validation": "None",
                 "format": "None",
@@ -136,7 +120,7 @@
             "permission": {
                 "description": "Permission level for the function",
                 "datatype": "string",
-                "required": true,
+                "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
@@ -145,7 +129,7 @@
     },
     "read_role_functions": {
         "project": "read_role_functions",
-        "project description": "Retrieve the functions associated with a role",
+        "project description": "Get all functions assigned to a role by role id",
         "url": "/admin/roles/{role_id}/functions",
         "method": "GET",
         "Roles": [
@@ -153,44 +137,9 @@
         ],
         "payload": {}
     },
-    "update_functions": {
-        "project": "update_functions",
-        "project description": "Update an existing function",
-        "url": "/admin/roles/function",
-        "method": "PUT",
-        "Roles": [
-            "admin"
-        ],
-        "payload": {
-            "function_id": {
-                "description": "Function ID to update",
-                "datatype": "integer",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "function": {
-                "description": "New name of the function",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
-            "permission": {
-                "description": "Updated permission level for the function",
-                "datatype": "string",
-                "required": false,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            }
-        }
-    },
     "delete_existing_role_function": {
         "project": "delete_existing_role_function",
-        "project description": "Delete a function from a role",
+        "project description": "Delete existing function of role by function id",
         "url": "/admin/roles/functions/{id}",
         "method": "DELETE",
         "Roles": [

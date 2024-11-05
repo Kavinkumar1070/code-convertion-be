@@ -1,22 +1,17 @@
-## API Route Analysis:
+## API Analysis:
 
-Here's an analysis of the provided `admin.py` code, broken down by function:
-
-**1. `/admin/personal/{employee_id}`**
+**1.  read_employee_route:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `read_employee_route`
-* **Roles**: `admin` 
+* **Roles**: `admin`
 * **URL/Endpoint**: `/admin/personal/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required 
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**2. `/admin/employees/{employee_id}`**
+**2. update_employee_data:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `update_employee_data`
@@ -24,49 +19,19 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/employees/{employee_id}`
 * **HTTP Method**: `PUT`
 * **Path Parameters**:
-    * `employee_id`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
+    - `employee_id`: string, required, None
 * **Class Parameters**: `EmployeeUpdate`
-    * `firstname`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `lastname`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `dateofbirth`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `contactnumber`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `emailaddress`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `address`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `nationality`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `gender`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `maritalstatus`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional 
+    - `firstname`: string, required, None
+    - `lastname`: string, required, None
+    - `dateofbirth`: string, required, None
+    - `contactnumber`: string, optional, None
+    - `emailaddress`: string, optional, None
+    - `address`: string, optional, None
+    - `nationality`: string, required, None
+    - `gender`: string, required, None
+    - `maritalstatus`: string, optional, None
 
-**3. `/admin/employees/{employee_id}`**
+**3. delete_employee_route:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `delete_employee_route`
@@ -74,59 +39,29 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/employees/{employee_id}`
 * **HTTP Method**: `DELETE`
 * **Path Parameters**:
-    * `employee_id`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**4. `/admin/employees/`**
+**4. create_employee:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `create_employee`
 * **Roles**: `admin`
 * **URL/Endpoint**: `/admin/employees/`
 * **HTTP Method**: `POST`
-* **Path Parameters**: `none`
+* **Path Parameters**: none
 * **Class Parameters**: `EmployeeEmploymentDetailsCreate`
-    * `job_position`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `department`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `email`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `password`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `start_date`:
-        * **Data Type**: date
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `employment_type`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `reporting_manager`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `work_location`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `basic_salary`:
-        * **Data Type**: float
-        * **Validations**: None
-        * **Field Requirement**: required
+    - `employee_email`: string, required, None
+    - `job_position`: string, required, None
+    - `department`: string, required, None
+    - `start_date`: string, required, None
+    - `employment_type`: string, required, None
+    - `reporting_manager`: string, required, None
+    - `work_location`: string, required, None
+    - `basic_salary`: float, required, None
+    - `password`: string, required, None
 
-**5. `/admin/employees/{employee_id}`**
+**5. read_employee:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `read_employee`
@@ -134,67 +69,30 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/employees/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**6. `/admin/employees/update/admin`**
+**6. update_employee_admin:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `update_employee_admin`
 * **Roles**: `admin`
 * **URL/Endpoint**: `/admin/employees/update/admin`
 * **HTTP Method**: `PUT`
-* **Path Parameters**: `none`
+* **Path Parameters**: none
 * **Class Parameters**: `EmployeeEmploymentDetailsUpdate`
-    * `employment_id`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `job_position`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `department`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `email`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `start_date`:
-        * **Data Type**: date
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `employment_type`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `reporting_manager`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `work_location`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `basic_salary`:
-        * **Data Type**: float
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `is_active`:
-        * **Data Type**: boolean
-        * **Validations**: None
-        * **Field Requirement**: optional
-    * `releave_date`:
-        * **Data Type**: date
-        * **Validations**: None
-        * **Field Requirement**: optional
+    - `employee_email`: string, optional, None
+    - `job_position`: string, optional, None
+    - `department`: string, optional, None
+    - `start_date`: string, optional, None
+    - `employment_type`: string, optional, None
+    - `reporting_manager`: string, optional, None
+    - `work_location`: string, optional, None
+    - `basic_salary`: float, optional, None
+    - `is_active`: boolean, optional, None
+    - `releave_date`: string, optional, None
 
-**7. `/admin/employees/{employee_id}`**
+**7. delete_employee_details:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `delete_employee_details`
@@ -202,13 +100,10 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/employees/{employee_id}`
 * **HTTP Method**: `DELETE`
 * **Path Parameters**:
-    * `employee_id`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**8. `/admin/pending/leave/{employee_id}`**
+**8. get_leave_by:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `get_leave_by`
@@ -216,13 +111,10 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/pending/leave/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**9. `/admin/{monthnumber}/{yearnumber}/{employee_id}`**
+**9. get_leave_by_month:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `get_leave_by_month`
@@ -230,35 +122,23 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/{monthnumber}/{yearnumber}/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `monthnumber`:
-        * **Data Type**: integer
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `yearnumber`:
-        * **Data Type**: integer
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `employee_id`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `monthnumber`: integer, required, None
+    - `yearnumber`: integer, required, None
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**10. `/admin/leaves/{employee_id}`**
+**10. get_leaves_by_employee:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `get_leaves_by_employee`
-* **Roles**: `admin`, `employee`, `teamlead`
+* **Roles**: `admin`, `teamlead`, `employee`
 * **URL/Endpoint**: `/admin/leaves/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none
 
-**11. `/admin/{leave_id}`**
+**11. delete_leave:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `delete_leave`
@@ -266,45 +146,33 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/{leave_id}`
 * **HTTP Method**: `DELETE`
 * **Path Parameters**:
-    * `leave_id`: 
-        * **Data Type**: integer
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `leave_id`: integer, required, None
+* **Class Parameters**: none
 
-**12. `/admin/update/leave/calender/`**
+**12. update_leave:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `update_leave`
 * **Roles**: `admin`
 * **URL/Endpoint**: `/admin/update/leave/calender/`
 * **HTTP Method**: `PUT`
-* **Path Parameters**: `none`
+* **Path Parameters**: none
 * **Class Parameters**: `LeaveCalendarUpdate`
-    * `leave_id`: 
-        * **Data Type**: integer
-        * **Validations**: None
-        * **Field Requirement**: required
-    * `status`:
-        * **Data Type**: enum (`LeaveStatus`) 
-        * **Validations**: `['pending','approved','rejected']`
-        * **Field Requirement**: required
-    * `reason`:
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: optional
+    - `leave_id`: integer, required, None
+    - `status`: string, required, ['pending', 'approved', 'rejected']
+    - `reason`: string, optional, None
 
-**13. `/admin/calender`**
+**13. create_leave_calendar:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `create_leave_calendar`
 * **Roles**: `admin`
 * **URL/Endpoint**: `/admin/calender`
 * **HTTP Method**: `POST`
-* **Path Parameters**: `none`
-* **Class Parameters**: `none`
+* **Path Parameters**: none
+* **Class Parameters**: none
 
-**14. `/admin/calender/{employee_id}`**
+**14. get_leave_calendar:**
 
 * **Prefix**: `/admin`
 * **Function Name**: `get_leave_calendar`
@@ -312,8 +180,5 @@ Here's an analysis of the provided `admin.py` code, broken down by function:
 * **URL/Endpoint**: `/admin/calender/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`: 
-        * **Data Type**: string
-        * **Validations**: None
-        * **Field Requirement**: required
-* **Class Parameters**: `none`
+    - `employee_id`: string, required, None
+* **Class Parameters**: none

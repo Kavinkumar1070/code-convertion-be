@@ -1,8 +1,9 @@
-## API Route Analysis for leave.py
+## API Route Analysis: leave.py
 
-Here is the analysis of the API routes defined in `leave.py`:
+Here's the analysis of the code from `leave.py` based on the provided specifications:
 
-**1. Apply Leave**
+**1. `apply_leave`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `apply_leave`
 * **Roles**: `employee`, `admin`, `teamlead`
@@ -10,13 +11,15 @@ Here is the analysis of the API routes defined in `leave.py`:
 * **HTTP Method**: `POST`
 * **Path Parameters**: None
 * **Class Parameters**: `EmployeeLeaveCreate`
-    * `leave_type`: string, required, None 
-    * `start_date`: date, required, None
-    * `end_date`: date, required, None
-    * `reason`: string, optional, None
-    * `other_entries`: string, optional, None
+    - `start_date`: string, required, None
+    - `end_date`: string, required, None
+    - `leave_type`: string, required, None
+    - `reason`: string, optional, None
+    - `other_entires`: string, optional, None
 
-**2. Get Leaves by Employee**
+
+**2. `get_leaves_by_employee`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `get_leaves_by_employee`
 * **Roles**: `employee`, `teamlead`
@@ -25,7 +28,9 @@ Here is the analysis of the API routes defined in `leave.py`:
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-**3. Get Pending Leaves by Employee**
+
+**3. `get_leave_by`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_by`
 * **Roles**: `employee`, `teamlead`
@@ -34,27 +39,22 @@ Here is the analysis of the API routes defined in `leave.py`:
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-**4. Get All Pending Leaves of a Team**
-* **Prefix**: `/leave`
-* **Function Name**: `get_leave_of_employee`
-* **Roles**: `teamlead`
-* **URL/Endpoint**: `/leave/pending/leave/all`
-* **HTTP Method**: `GET`
-* **Path Parameters**: None
-* **Class Parameters**: None
 
-**5. Get Leaves by Month**
+**4. `get_leave_by_month`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_by_month`
 * **Roles**: `employee`, `teamlead`
 * **URL/Endpoint**: `/leave/{monthnumber}/{yearnumber}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `monthnumber`: integer, required, None
-    * `yearnumber`: integer, required, None
+    - `monthnumber`: integer, required, None
+    - `yearnumber`: integer, required, None
 * **Class Parameters**: None
 
-**6. Update Leave (Admin/Teamlead)**
+
+**5. `update_leave`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `update_leave`
 * **Roles**: `teamlead`, `admin`
@@ -62,21 +62,25 @@ Here is the analysis of the API routes defined in `leave.py`:
 * **HTTP Method**: `PUT`
 * **Path Parameters**: None
 * **Class Parameters**: `EmployeeLeaveUpdate`
-    * `leave_id`: integer, required, None
-    * `status`: enum (`LeaveStatus`), required, [`pending`, `approved`, `rejected`]
-    * `reason`: string, optional, None
+    - `leave_id`: integer, required, None
+    - `status`: enum (`LeaveStatus`), required, ['pending', 'approved', 'rejected'] 
+    - `reason`: string, optional, None 
 
-**7. Delete Leave**
+
+**6. `delete_leave`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `delete_leave`
 * **Roles**: `employee`, `teamlead`
 * **URL/Endpoint**: `/leave/{leave_id}`
 * **HTTP Method**: `DELETE`
 * **Path Parameters**:
-    * `leave_id`: integer, required, None
+    - `leave_id`: integer, required, None
 * **Class Parameters**: None
 
-**8. Get Leave Calendar**
+
+**7. `get_leave_calendar`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_calendar`
 * **Roles**: `employee`, `teamlead`
@@ -85,12 +89,14 @@ Here is the analysis of the API routes defined in `leave.py`:
 * **Path Parameters**: None
 * **Class Parameters**: None
 
-**9. Get Leave Calendar for Teamlead**
+
+**8. `get_leave_calendar_tl`**
+
 * **Prefix**: `/leave`
 * **Function Name**: `get_leave_calendar_tl`
 * **Roles**: `teamlead`
 * **URL/Endpoint**: `/leave/teamlead/calender/{employee_id}`
 * **HTTP Method**: `GET`
 * **Path Parameters**:
-    * `employee_id`: string, required, None
+    - `employee_id`: string, required, None
 * **Class Parameters**: None

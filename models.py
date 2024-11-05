@@ -74,29 +74,6 @@ def upload_json_folder(folder_path: str):
     return {"detail": "Files successfully uploaded"}
 
 
-# @router.get("/files/{file_id}")
-# async def get_file(file_id: int):
-#     db = SessionLocal()
-#     file_entry = db.query(FileModel).filter(FileModel.id == file_id).first()
-
-#     if file_entry is None:
-#         db.close()
-#         raise HTTPException(status_code=404, detail="File not found.")
-
-#     db.close()
-#     return {
-#         "id": file_entry.id,
-#         "filename": file_entry.filename,
-#         "content": file_entry.content.decode('latin1')  # Decode if needed, or you can send raw binary
-#     }
-
-
-# @router.post("/test")
-# async def get_functionality(folder_path: str):
-#     a=role_based_function(folder_path)
-#     return a 
-
-
 @router.get("/get-json-filename")
 def get_json_file():
     db=SessionLocal()

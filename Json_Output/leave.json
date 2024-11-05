@@ -10,40 +10,40 @@
             "teamlead"
         ],
         "payload": {
-            "leave_type": {
-                "description": "Type of leave requested",
-                "datatype": "string",
-                "required": true,
-                "validation": "None",
-                "format": "None",
-                "assigned": "None"
-            },
             "start_date": {
-                "description": "Start date of the leave",
-                "datatype": "date",
+                "description": "Start date for leave",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
             "end_date": {
-                "description": "End date of the leave",
-                "datatype": "date",
+                "description": "End date for leave",
+                "datatype": "string",
+                "required": true,
+                "validation": "None",
+                "format": "None",
+                "assigned": "None"
+            },
+            "leave_type": {
+                "description": "Type of leave",
+                "datatype": "string",
                 "required": true,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
             "reason": {
-                "description": "Reason for applying leave",
+                "description": "Reason for leave",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
                 "format": "None",
                 "assigned": "None"
             },
-            "other_entries": {
-                "description": "Any other relevant information about the leave",
+            "other_entires": {
+                "description": "Other entries for leave",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
@@ -54,7 +54,7 @@
     },
     "get_leaves_by_employee": {
         "project": "get_leaves_by_employee",
-        "project description": "Get leave details by employee",
+        "project description": "Get all leaves taken by the current logged-in employee",
         "url": "/leave/details",
         "method": "GET",
         "Roles": [
@@ -65,7 +65,7 @@
     },
     "get_leave_by": {
         "project": "get_leave_by",
-        "project description": "Get leave details by specific criteria",
+        "project description": "Get leave by the current logged-in employee, pending leave",
         "url": "/leave/pending/leave",
         "method": "GET",
         "Roles": [
@@ -74,19 +74,9 @@
         ],
         "payload": {}
     },
-    "get_leave_of_employee": {
-        "project": "get_leave_of_employee",
-        "project description": "Get leave details of all employees",
-        "url": "/leave/pending/leave/all",
-        "method": "GET",
-        "Roles": [
-            "teamlead"
-        ],
-        "payload": {}
-    },
     "get_leave_by_month": {
         "project": "get_leave_by_month",
-        "project description": "Get leave details by month and year",
+        "project description": "Get leaves for a specific month and year",
         "url": "/leave/{monthnumber}/{yearnumber}",
         "method": "GET",
         "Roles": [
@@ -95,7 +85,7 @@
         ],
         "payload": {
             "monthnumber": {
-                "description": "Month number for leave details",
+                "description": "Month number for leave",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -103,7 +93,7 @@
                 "assigned": "None"
             },
             "yearnumber": {
-                "description": "Year number for leave details",
+                "description": "Year number for leave",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -114,7 +104,7 @@
     },
     "update_leave": {
         "project": "update_leave",
-        "project description": "Update leave status by teamlead or admin",
+        "project description": "Update leave status",
         "url": "/leave/admin/teamlead/update",
         "method": "PUT",
         "Roles": [
@@ -123,7 +113,7 @@
         ],
         "payload": {
             "leave_id": {
-                "description": "ID of the leave to update",
+                "description": "Leave ID to update",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -131,7 +121,7 @@
                 "assigned": "None"
             },
             "status": {
-                "description": "New status of the leave",
+                "description": "Leave status to update",
                 "datatype": "enum",
                 "required": true,
                 "validation": [
@@ -147,7 +137,7 @@
                 "assigned": "None"
             },
             "reason": {
-                "description": "Reason for updating the leave status",
+                "description": "Reason for leave update",
                 "datatype": "string",
                 "required": false,
                 "validation": "None",
@@ -158,7 +148,7 @@
     },
     "delete_leave": {
         "project": "delete_leave",
-        "project description": "Delete leave by employee or teamlead",
+        "project description": "Delete a leave request",
         "url": "/leave/{leave_id}",
         "method": "DELETE",
         "Roles": [
@@ -167,7 +157,7 @@
         ],
         "payload": {
             "leave_id": {
-                "description": "ID of the leave to delete",
+                "description": "Leave ID to delete",
                 "datatype": "integer",
                 "required": true,
                 "validation": "None",
@@ -178,7 +168,7 @@
     },
     "get_leave_calendar": {
         "project": "get_leave_calendar",
-        "project description": "Get leave calendar for employee or teamlead",
+        "project description": "Get leave calendar for the current logged-in employee",
         "url": "/leave/calender",
         "method": "GET",
         "Roles": [
@@ -197,7 +187,7 @@
         ],
         "payload": {
             "employee_id": {
-                "description": "Employee ID for leave calendar",
+                "description": "Employee ID to get leave calendar",
                 "datatype": "string",
                 "required": true,
                 "validation": "None",

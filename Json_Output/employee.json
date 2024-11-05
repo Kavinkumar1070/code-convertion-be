@@ -1,7 +1,7 @@
 {
     "read_employee": {
         "project": "read_employee",
-        "project description": "Read employee details",
+        "project description": "Retrieve the employee details.",
         "url": "/employee/employees/reademployee",
         "method": "GET",
         "Roles": [

@@ -1,24 +1,31 @@
-from typing import Optional
-
-from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
+from fastapi import APIRouter, HTTPException, Depends, Query,Path
 from sqlalchemy.orm import Session
-
-from src.core.authentication import (get_current_employee,
-                                     get_current_employee_roles,
-                                     roles_required)
-from src.core.database import get_db
+from typing import Optional
 from src.core.utils import normalize_string
-from src.crud.employee import (create_employee_employment_details,
-                               delete_employee_employment_details,
-                               get_all_employee_employment_details,
-                               get_all_employee_teamlead,
-                               update_employee_employment_details)
-from src.schemas.employee import (EmployeeEmploymentDetailsCreate,
-                                  EmployeeEmploymentDetailsUpdate)
+from src.core.database import get_db
+from src.core.authentication import (
+    roles_required,
+    get_current_employee,
+    get_current_employee_roles,
+)
+from src.crud.employee import (
+    create_employee_employment_details,
+    update_employee_employment_details,
+    delete_employee_employment_details,
+    get_all_employee_employment_details,
+    get_all_employee_teamlead,
+)
+from src.schemas.employee import (
+    EmployeeEmploymentDetailsCreate,
+    EmployeeEmploymentDetailsUpdate,
+)
 
 router = APIRouter(
-    prefix="/employee", tags=["employee"], responses={400: {"detail": "Not found"}}
+    prefix="/employee", tags=["employee"], responses={400: {"message": "Not found"}}
 )
+
+
+
 
 
 @router.get(
@@ -33,22 +40,14 @@ async def read_employee(
     employee_role = get_current_employee_roles(current_employee.id, db)
 
     if employee_role.name == "employee":
-        db_employee = get_all_employee_employment_details(
-            db, current_employee_id)
+        db_employee = get_all_employee_employment_details(db, current_employee_id)
     elif employee_role.name == "teamlead":
-        db_employee = get_all_employee_employment_details(
-            db, current_employee_id)
+            db_employee = get_all_employee_employment_details(db, current_employee_id)
     if db_employee is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Employee '{current_employee_id}' not found",
-        )
+        raise HTTPException(status_code=404, detail="Employee not found")
 
     # Prepare the response with employee details
     employee_details = {
-        "id": db_employee.id,
-        "employee_data": db_employee.employee.employment_id,
-        "employee_name": db_employee.employee.firstname,
         "employee_email": db_employee.employee_email,
         "job_position": db_employee.job_position,
         "department": db_employee.department,
@@ -59,6 +58,10 @@ async def read_employee(
         "basic_salary": db_employee.basic_salary,
         "is_active": db_employee.is_active,
         "releave_date": str(db_employee.releave_date),
+        "employee_data":db_employee.employee.employment_id,
+        "employee_name":db_employee.employee.firstname
     }
 
     return employee_details
+
+

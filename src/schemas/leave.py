@@ -1,9 +1,7 @@
+from pydantic import BaseModel, Field
+from typing import Optional
 from datetime import date, datetime
 from enum import Enum
-from typing import Optional
-
-from dateutil import parser
-from pydantic import BaseModel, Field, validator
 
 
 class LeaveDuration(str, Enum):
@@ -23,20 +21,6 @@ class EmployeeLeaveBase(BaseModel):
     start_date: date
     total_days: int = Field(gt=0)
     reason: Optional[str] = None
-
-    @validator("start_date", pre=True)
-    def parse_date(cls, value):
-        if value is not None:
-            try:
-                # Parse the date from various formats
-                parsed_date = parser.parse(value)
-                return parsed_date.strftime(
-                    "%Y-%m-%d"
-                )  # Convert to standard format YYYY-MM-DD
-            except (ValueError, TypeError):
-                raise ValueError(
-                    "Invalid date format. Please use a valid date string.")
-        return value
 
 
 class EmployeeLeaveCreate(EmployeeLeaveBase):
@@ -63,22 +47,10 @@ class EmployeeLeaveResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    @validator("start_date", pre=True)
-    def parse_date(cls, value):
-        if value is not None:
-            try:
-                # Parse the date from various formats
-                parsed_date = parser.parse(value)
-                return parsed_date.strftime(
-                    "%Y-%m-%d"
-                )  # Convert to standard format YYYY-MM-DD
-            except (ValueError, TypeError):
-                raise ValueError(
-                    "Invalid date format. Please use a valid date string.")
-        return value
-
     class Config:
         orm_mode = True
+
+
 
 
 class LeaveCalendarUpdate(BaseModel):
