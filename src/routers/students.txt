@@ -1,0 +1,140 @@
+Here is the analysis of the provided code:
+
+### Function and API Route Details:
+
+#### Function Example 1:
+* **Prefix**: `none`
+* **Function Name**: `create_new_student`
+* **Roles**: `none`
+* **URL/Endpoint**: `/students/`
+* **HTTP Method**: `POST`
+* **Path Parameters**: `none`
+* **Class Parameters**: `StudentCreate`
+
+#### Function Example 2:
+* **Prefix**: `none`
+* **Function Name**: `read_student`
+* **Roles**: `none`
+* **URL/Endpoint**: `/students/{student_id}`
+* **HTTP Method**: `GET`
+* **Path Parameters**:
+	+ `student_id`: `integer`, `required`, `none`
+* **Class Parameters**: `none`
+
+#### Function Example 3:
+* **Prefix**: `none`
+* **Function Name**: `read_students`
+* **Roles**: `none`
+* **URL/Endpoint**: `/students/`
+* **HTTP Method**: `GET`
+* **Path Parameters**: `none`
+* **Class Parameters**: `none`
+
+#### Function Example 4:
+* **Prefix**: `none`
+* **Function Name**: `update_existing_student`
+* **Roles**: `none`
+* **URL/Endpoint**: `/students/{student_id}`
+* **HTTP Method**: `PUT`
+* **Path Parameters**:
+	+ `student_id`: `integer`, `required`, `none`
+* **Class Parameters**: `UpdateStudent`
+
+#### Function Example 5:
+* **Prefix**: `none`
+* **Function Name**: `delete_existing_student`
+* **Roles**: `none`
+* **URL/Endpoint**: `/students/{student_id}`
+* **HTTP Method**: `DELETE`
+* **Path Parameters**:
+	+ `student_id`: `integer`, `required`, `none`
+* **Class Parameters**: `none`
+
+### Class Definitions:
+
+#### Class Example 1:
+* **Class Name**: `StudentCreate`
+	+ `first_name`: `string`, `required`, `none`
+	+ `last_name`: `string`, `required`, `none`
+	+ `gender`: `string`, `required`, `none`
+	+ `age`: `integer`, `required`, `none`
+	+ `date_of_birth`: `date`, `required`, `none`
+	+ `religion`: `string`, `required`, `none`
+	+ `father_name`: `string`, `required`, `none`
+	+ `mother_name`: `string`, `required`, `none`
+	+ `student_email`: `EmailStr`, `required`, `none`
+	+ `parent_email`: `EmailStr`, `required`, `none`
+	+ `student_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `father_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `mother_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `father_occupation`: `string`, `required`, `none`
+	+ `mother_occupation`: `string`, `required`, `none`
+	+ `address`: `string`, `required`, `none`
+	+ `landmark`: `string`, `required`, `none`
+	+ `city`: `string`, `required`, `none`
+	+ `state`: `string`, `required`, `none`
+	+ `country`: `string`, `required`, `none`
+	+ `pincode`: `integer`, `required`, `none`
+	+ `student_image`: `string`, `required`, `none`
+	+ `emergency_contact_name`: `string`, `required`, `none`
+	+ `emergency_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `relationship_emergency_contact`: `string`, `required`, `none`
+
+#### Class Example 2:
+* **Class Name**: `StudentResponse`
+	+ `id`: `integer`, `required`, `none`
+	+ `first_name`: `string`, `required`, `none`
+	+ `last_name`: `string`, `required`, `none`
+	+ `gender`: `string`, `required`, `none`
+	+ `age`: `integer`, `required`, `none`
+	+ `date_of_birth`: `date`, `required`, `none`
+	+ `religion`: `string`, `required`, `none`
+	+ `father_name`: `string`, `required`, `none`
+	+ `mother_name`: `string`, `required`, `none`
+	+ `student_email`: `EmailStr`, `required`, `none`
+	+ `parent_email`: `EmailStr`, `required`, `none`
+	+ `student_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `father_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `mother_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `father_occupation`: `string`, `required`, `none`
+	+ `mother_occupation`: `string`, `required`, `none`
+	+ `address`: `string`, `required`, `none`
+	+ `landmark`: `string`, `required`, `none`
+	+ `city`: `string`, `required`, `none`
+	+ `state`: `string`, `required`, `none`
+	+ `country`: `string`, `required`, `none`
+	+ `pincode`: `integer`, `required`, `none`
+	+ `emergency_contact_name`: `string`, `required`, `none`
+	+ `emergency_contact_no`: `integer`, `required`, `must be at least 10 digits long`
+	+ `relationship_emergency_contact`: `string`, `required`, `none`
+	+ `student_image`: `string`, `required`, `none`
+
+#### Class Example 3:
+* **Class Name**: `UpdateStudent`
+	+ `first_name`: `Optional[str]`, `optional`, `none`
+	+ `last_name`: `Optional[str]`, `optional`, `none`
+	+ `gender`: `Optional[str]`, `optional`, `none`
+	+ `age`: `Optional[int]`, `optional`, `none`
+	+ `date_of_birth`: `Optional[date]`, `optional`, `none`
+	+ `religion`: `Optional[str]`, `optional`, `none`
+	+ `father_name`: `Optional[str]`, `optional`, `none`
+	+ `mother_name`: `Optional[str]`, `optional`, `none`
+	+ `student_email`: `Optional[EmailStr]`, `optional`, `none`
+	+ `parent_email`: `Optional[EmailStr]`, `optional`, `none`
+	+ `student_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `father_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `mother_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `father_occupation`: `Optional[str]`, `optional`, `none`
+	+ `mother_occupation`: `Optional[str]`, `optional`, `none`
+	+ `address`: `Optional[str]`, `optional`, `none`
+	+ `landmark`: `Optional[str]`, `optional`, `none`
+	+ `city`: `Optional[str]`, `optional`, `none`
+	+ `state`: `Optional[str]`, `optional`, `none`
+	+ `country`: `Optional[str]`, `optional`, `none`
+	+ `pincode`: `Optional[int]`, `optional`, `none`
+	+ `student_image`: `Optional[str]`, `optional`, `none`
+	+ `emergency_contact_name`: `Optional[str]`, `optional`, `none`
+	+ `emergency_contact_no`: `Optional[int]`, `optional`, `must be at least 10 digits long`
+	+ `relationship_emergency_contact`: `Optional[str]`, `optional`, `none`
+
+No Enum definitions are present in the provided code.

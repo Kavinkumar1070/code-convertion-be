@@ -4,6 +4,7 @@
         "project description": "Create a new student",
         "url": "/students/",
         "method": "POST",
+        "Roles": [],
         "payload": {
             "first_name": {
                 "description": "First name of the student",
@@ -187,6 +188,7 @@
         "project description": "Retrieve a student's details by ID",
         "url": "/students/{student_id}",
         "method": "GET",
+        "Roles": [],
         "payload": {
             "student_id": {
                 "description": "Student's ID",
@@ -202,6 +204,7 @@
         "project description": "Retrieve all students' details",
         "url": "/students/",
         "method": "GET",
+        "Roles": [],
         "payload": {}
     },
     "update_existing_student": {
@@ -209,6 +212,7 @@
         "project description": "Update an existing student's details",
         "url": "/students/{student_id}",
         "method": "PUT",
+        "Roles": [],
         "payload": {
             "student_id": {
                 "description": "Student's ID",
@@ -399,6 +403,7 @@
         "project description": "Delete an existing student",
         "url": "/students/{student_id}",
         "method": "DELETE",
+        "Roles": [],
         "payload": {
             "student_id": {
                 "description": "Student's ID",

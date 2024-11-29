@@ -1,3 +1,3 @@
-Please provide the code from `__init__.py` so I can analyze it and give you the details you requested. 
+Please provide the code from __init__.py that you would like me to analyze. I will capture the details of each function, API route, class, and parameter as specified in the template.
 
-I'm ready to help you understand the API routes and functions within your code!
+Please paste the code, and I will assist you in analyzing it and providing the required information.

@@ -149,7 +149,7 @@ def copy_and_process(request: FolderCopyRequest):
                 logging.info(f"Processing router file: {router_file_path}")
 
                 # Find schema imports in the current router file
-                schema_imports = find_schema_imports_in_router(router_file_path, request.root_directory, request.routers_name)
+                schema_imports = find_schema_imports_in_router(router_file_path, request.root_directory, request.schemas_name)
                 for schema_name, classes in schema_imports:
                     logging.info(f"Found schema imports: {schema_name} - {classes}")
 

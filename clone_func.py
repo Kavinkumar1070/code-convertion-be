@@ -130,6 +130,7 @@ def copy_selected_folders(source_directory, target_directory, selected_folders, 
 
 # Function to find schema imports in a single router file
 def find_schema_imports_in_router(router_file_path,root_directory,schemas_):
+    
     schema_imports = set()  # Use a set to avoid duplicates
 
     # Updated regex pattern to match both single-line and multiline imports
@@ -143,7 +144,7 @@ def find_schema_imports_in_router(router_file_path,root_directory,schemas_):
             current_schema = None
             
             for line_number, line in enumerate(f, start=1):
-                line = line.strip()  # Strip whitespace from the line
+                line = re.sub(r'#.*$', '', line).strip()  # Remove comments and strip whitespace
 
                 if multiline_import:
                     # We're in the middle of a multiline import
@@ -176,62 +177,11 @@ def find_schema_imports_in_router(router_file_path,root_directory,schemas_):
 
     except Exception as e:
         print(f"Error reading {router_file_path}: {e}")
-
     return schema_imports
 
-# def extract_class_code(schema_file, classes):
-#     # Read the content of the schema file
-#     try:
-#         with open(schema_file, 'r') as file:
-#             file_content = file.read()
-#     except FileNotFoundError:
-#         print(f"Error: The file {schema_file} does not exist.")
-#         return None 
 
-#     # Customize the prompt based on the filename and classes
-#     prompt = f"""
-# Please extract only the definitions of the following classes and their parent classes from the provided Python code dynamically:
-# - For each class, check its fields, inheritance, and methods. If the class inherits from any other class or references Enums (like LeaveDuration, LeaveStatus) within the file, include those as well.
-# - Ensure that all parent classes, fields, and validators used within the requested classes are captured.
-# - Exclude all other unrelated classes.
-# - Keep the output in the original Python code format.
- 
-# The classes to extract are:
-# {', '.join(classes)}.
- 
-# Here is the Python code:
-# {file_content}
- 
-# Ensure the response is enclosed with `~~~` before and after the output.
-# """
-
-#     # Set up the Groq API key
-#     client = Groq(
-#         api_key="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",
-#     )
-
-#     # Make the API call to the Groq model
-#     response = client.chat.completions.create(
-#         messages=[{
-#             "role": "user",
-#             "content": prompt,
-#         }],
-#         model="llama3-70b-8192",
-#     )
-
-#     # Extract the response content
-#     natural_language_explanation = response.choices[0].message.content.strip()
-#     json_start_idx = natural_language_explanation.find("~~~") + 3
-#     json_end_idx = natural_language_explanation.rfind("~~~") 
-#     if json_start_idx > -1 and json_end_idx > json_start_idx:
-#         result = natural_language_explanation[json_start_idx:json_end_idx].strip()
-#     else:
-#         result = "No valid response found."  # Add a fallback if markers aren't present
-#     return result
-
-import google.generativeai as genai
 def extract_class_code(schema_file, classes):
-        # Read the content of the schema file
+    # Read the content of the schema file
     try:
         with open(schema_file, 'r') as file:
             file_content = file.read()
@@ -255,14 +205,23 @@ Here is the Python code:
  
 Ensure the response is enclosed with `~~~` before and after the output.
 """
-    # Configure the Gemini API model and request
-    genai.configure(api_key="AIzaSyCXx_qxtPPghstnxkm8ehgU_N_hhmjvmq0")
-    model = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=prompt)
-    
-    # Make a request to the LLM
-    response = model.generate_content(contents="Do the process mentioned in prompt")
-    natural_language_explanation = response.text.strip()
+
+    # Set up the Groq API key
+    client = Groq(
+        api_key="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",
+    )
+
+    # Make the API call to the Groq model
+    response = client.chat.completions.create(
+        messages=[{
+            "role": "user",
+            "content": prompt,
+        }],
+        model="llama3-70b-8192",
+    )
+
     # Extract the response content
+    natural_language_explanation = response.choices[0].message.content.strip()
     json_start_idx = natural_language_explanation.find("~~~") + 3
     json_end_idx = natural_language_explanation.rfind("~~~") 
     if json_start_idx > -1 and json_end_idx > json_start_idx:
@@ -270,3 +229,45 @@ Ensure the response is enclosed with `~~~` before and after the output.
     else:
         result = "No valid response found."  # Add a fallback if markers aren't present
     return result
+
+# import google.generativeai as genai
+# def extract_class_code(schema_file, classes):
+#         # Read the content of the schema file
+#     try:
+#         with open(schema_file, 'r') as file:
+#             file_content = file.read()
+#     except FileNotFoundError:
+#         print(f"Error: The file {schema_file} does not exist.")
+#         return None 
+
+#     # Customize the prompt based on the filename and classes
+#     prompt = f"""
+# Please extract only the definitions of the following classes and their parent classes from the provided Python code dynamically:
+# - For each class, check its fields, inheritance, and methods. If the class inherits from any other class or references Enums (like LeaveDuration, LeaveStatus) within the file, include those as well.
+# - Ensure that all parent classes, fields, and validators used within the requested classes are captured.
+# - Exclude all other unrelated classes.
+# - Keep the output in the original Python code format.
+ 
+# The classes to extract are:
+# {', '.join(classes)}.
+ 
+# Here is the Python code:
+# {file_content}
+ 
+# Ensure the response is enclosed with `~~~` before and after the output.
+# """
+#     # Configure the Gemini API model and request
+#     genai.configure(api_key="AIzaSyCXx_qxtPPghstnxkm8ehgU_N_hhmjvmq0")
+#     model = genai.GenerativeModel(model_name="gemini-1.5-flash", system_instruction=prompt)
+    
+#     # Make a request to the LLM
+#     response = model.generate_content(contents="Do the process mentioned in prompt")
+#     natural_language_explanation = response.text.strip()
+#     # Extract the response content
+#     json_start_idx = natural_language_explanation.find("~~~") + 3
+#     json_end_idx = natural_language_explanation.rfind("~~~") 
+#     if json_start_idx > -1 and json_end_idx > json_start_idx:
+#         result = natural_language_explanation[json_start_idx:json_end_idx].strip()
+#     else:
+#         result = "No valid response found."  # Add a fallback if markers aren't present
+#     return result
